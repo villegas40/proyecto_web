@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views # Para usar login y logout
+from pagina import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', auth_views.login, {'template_name': 'pagina/login.html'}, name = 'login'),
+    path('logout/', auth_views.logout, {'template_name':'pagina/logout.html'}, name='logout'),
+    path('home/', views.home, name = 'home_view'),
+    path('signup/', views.signup_view, name = 'signup_view'),
 ]
