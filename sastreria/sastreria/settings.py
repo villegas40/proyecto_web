@@ -125,7 +125,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # Si se trata de ingresar a una vista con login_required
 # Será redireccionado a la página de login
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/index'
+LOGIN_REDIRECT_URL = '/home'
 
 # Setup Email Response for password
 

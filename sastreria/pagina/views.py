@@ -1,5 +1,5 @@
 # Sastreria
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import SignupForm, EditProfileForm # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
 from .models import Perfil, Product
