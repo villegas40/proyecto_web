@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Carrito {% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <h1>Carrito</h1>
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">Articulo</div>
+      <div class="col-sm-3" style="background-color:lavender;">Precio</div>
+      <div class="col-sm-3" style="background-color:lavender;">Cantidad</div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        {% for item in cart.items %}
+          <p>{{item.product.nombre_producto}}</p>
+        {% endfor %}
+      </div>
+      <div class="col-sm-3">
+        {% for item in cart.items %}
+          <p>{{item.price}}</p>
+        {% endfor %}
+      </div>
+      <div class="col-sm-3">
+        {% for item in cart.items %}
+          <p>{{item.quantity}}</p>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock %}

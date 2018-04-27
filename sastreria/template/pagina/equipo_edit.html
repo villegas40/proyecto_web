@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Equipos View {% endblock %}
+{% block content %}
+<h1>Nuevo Ninja</h1>
+<form class="post-form" method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" name="submit_button">Guardar</button>
+</form>
+{% endblock %}
