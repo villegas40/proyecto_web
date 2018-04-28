@@ -44,6 +44,7 @@ urlpatterns = [
     name = 'password_reset_complete'),
     path('carrito/mostrar/', views.show, name='mostrar_carrito_view'),
     re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
+    re_path(r'^carrito/remover/$',views.remove, name='agregar_carrito_view'),
 
 
 ]

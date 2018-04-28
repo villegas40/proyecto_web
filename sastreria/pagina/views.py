@@ -9,6 +9,7 @@ from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambi
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
+from django.http import HttpResponseRedirect, HttpResponse
 
 # Create your views here.
 def home(request):
@@ -84,8 +85,17 @@ def add(request):
     cart = Cart(request.session)
     product = Product.objects.get(id=request.GET.get('id'))
     cart.add(product, price=product.precio, quantity=1)
-    return HttpResponse("Añadido al carrito.")
+    #return HttpResponse("Añadido al carrito.")
+    return render(request, 'pagina/agregar-carrito.html', {'product': product})
 
 @login_required
 def show(request):
     return render(request, 'pagina/mostrar-carrito.html')
+
+@login_required
+def remove(request):
+    cart = Cart(request.session)
+    product = Product.objects.get(id=request.GET.get('id'))
+    cart.remove(product)
+    #return HttpResponse("Removed")
+    return render(request, 'pagina/eliminar-carrito.html', {'product':product})

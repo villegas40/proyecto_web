@@ -25,6 +25,16 @@
           <p>{{item.quantity}}</p>
         {% endfor %}
       </div>
+      <div class="col-sm-3">
+        {% for item in cart.items %}
+          <p>
+            <input class="btn btn-danger btn-sm" type="button"
+            onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
+            value="Eliminar">
+            </input>
+        </p>
+        {% endfor %}
+      </div>
     </div>
 </div>
 {% endblock %}
