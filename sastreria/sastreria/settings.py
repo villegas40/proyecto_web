@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pagina',
+    'carton',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'sastreria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +120,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# Si se trata de ingresar a una vista con login_required
+# Será redireccionado a la página de login
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/home'
+
+# Setup Email Response for password
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sastreriabeltran2@gmail.com' # Crear correo
+EMAIL_HOST_PASSWORD = 'sastreria295'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
+
+# Para que fucnione el Carrito
+CART_PRODUCT_MODEL = 'pagina.models.Product'
+
+BASE_URL = '/home/'

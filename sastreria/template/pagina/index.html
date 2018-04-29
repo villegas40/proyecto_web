@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <h1>Bienvenidos</h1>
+  <p>¡Checa nuestros nuestros prouctos!</p>
+  <div class="row">
+    {% for item in product %}
+    <div class="col-sm-3" style="background-color:white;">
+      <p><img src="{{ item.image_url }}" width="200" height="200"></p>
+      <p></p>
+      <p>{{ item.nombre_producto }}</p>
+      <p>Precio: ${{ item.precio }} MNX</p>
+      <input class="btn btn-info" type="button"
+      onclick="window.location.href='/carrito/agregar/?id={{item.id}}'"
+      value="¡Agregar al Carrito!">
+      </input>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
