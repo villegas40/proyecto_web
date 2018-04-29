@@ -140,3 +140,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
 CART_PRODUCT_MODEL = 'pagina.models.Product'
 
 BASE_URL = '/home/'
+
+
+#paypal
+PAYPAL_PDT_TOKEN='GqqDTrc0MiV_KpWWinD3GNvGVoK4X_zbETvZKunAGRHJOsmdxUK378CskQa'
+PAYPAL_EMAIL='drokemxpaypal-facilitator@gmail.com'
+PAYPAL_RETURN_URL = 'http://127.0.0.1:8000'
+
+
+#sandbox
+PAYPAL_URL = 'https://www.sandbox.paypal.com/au/cgi-bin/webscr'
+PAYPAL_PDT_URL = 'https://www.sandbox.paypal.com/au/cgi-bin/webscr'

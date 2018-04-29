@@ -1,8 +1,8 @@
 # Sastreria
-from django.shortcuts import render, redirect
-from .forms import SignupForm, EditProfileForm # Formulario creado para el perfil
+from django.shortcuts import render, redirect,get_object_or_404
+from .forms import SignupForm, EditProfileForm,citas # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
-from .models import Perfil, Product
+from .models import Perfil, Product,Citas
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
@@ -135,3 +135,25 @@ def remove(request):
     cart.remove(product)
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
+
+
+@login_required
+def modulocitas(request,id):
+    form = citas()
+    if request.method == 'POST':
+        form = citas(request.POST,request.FILES)
+        if form.is_valid():
+            user = get_object_or_404(User,pk=id)
+            p = Citas()
+
+            p.CitaHora = form.cleaned_data["citahora"]
+            p.CitaFecha = form.cleaned_data["citafecha"]
+            p.LugarCita = form.cleaned_data["lugarcita"]
+            p.usuario = user
+            p.save()
+            return HttpResponseRedirect("/home/")
+    else:
+        form = citas()
+    ctx = {"form":form}
+
+    return render(request,'pagina/citas.html',ctx)
