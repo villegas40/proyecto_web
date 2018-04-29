@@ -10,11 +10,45 @@ from django.contrib.auth import update_session_auth_hash # Mantener al usuario e
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
-
+from sastreria.settings import BASE_URL
 # Create your views here.
 def home(request):
-    product = Product.objects.all()
-    return render(request, 'pagina/index.html', {'product': product})
+    if 'categoria' in request.GET:
+        categoria = request.GET['categoria']
+    else:
+        categoria = 'todo'
+
+    # Pensar como hacer el filtrado de precios
+
+    if 'filtrado' in request.GET:
+        filtrado = request.GET['filtrado']
+    else:
+        filtrado = 'todo'
+
+    if categoria == 'todo':
+        item_list = Product.objects.all()
+    else:
+        item_list = Product.objects.filter(categoria=categoria)
+
+    item_list = [item for item in item_list]
+
+    if filtrado=='nuevo':
+        item_list.sort(key=(lambda item: item.fecha_alta))
+    elif filtrado=='barato':
+        item_list.sort(key=(lambda item: item.precio), reverse=False)
+    elif filtrado=='caro':
+        item_list.sort(key=(lambda item: item.precio), reverse=True)
+    elif filtrado=='todo':
+        item_list.sort(key=(lambda item: item.nombre_producto))
+
+    context = {
+    'BASE_URL': BASE_URL,
+    'categoria':categoria,
+    'filtrado':filtrado,
+    'item_list':item_list
+    }
+    #product = Product.objects.all()
+    return render(request, 'pagina/index2.html', context)
 
 # Creacion de la vista de signup_view
 def signup_user_view(request):
