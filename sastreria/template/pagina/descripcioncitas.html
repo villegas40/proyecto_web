@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} Cita {% endblock %}
+{% block content %}
+Fecha de la cita: <b>{{resource.CitaFecha}}</b>
+<p>En la sucursal: <b>{{resource.LugarCita}}</b></p>
+<p>Hora de la cita: <b>{{resource.get_CitaHora_display}}</b></p>
+
+
+{% endblock %}

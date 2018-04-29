@@ -151,9 +151,25 @@ def modulocitas(request,id):
             p.LugarCita = form.cleaned_data["lugarcita"]
             p.usuario = user
             p.save()
+            #poner aqui una alerta chida
             return HttpResponseRedirect("/home/")
     else:
         form = citas()
     ctx = {"form":form}
 
     return render(request,'pagina/citas.html',ctx)
+@login_required
+def desplegarcitas(request,pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+
+    p = Citas.objects.all().filter(usuario = user)
+
+    return render(request,'pagina/desplegarcitas.html',{'list': Citas.objects.all().filter(usuario=user)})
+
+@login_required
+def citasdescripcion(request,id):
+    resource = get_object_or_404(Citas,pk=id)
+    return render(request,'pagina/descripcioncitas.html',{'resource':resource})

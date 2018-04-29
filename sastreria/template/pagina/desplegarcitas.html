@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Paypal {% endblock %}
+
+{% block content %}
+<p>Citas realizadas</p>
+
+{% for item in list %}
+<li><a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}} - {{item.LugarCita}}</a></li>
+{% endfor %}
+
+<p>Clic a la cita para mayor informacion </p>
+
+
+{% endblock %}
