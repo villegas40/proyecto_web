@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Paypal {% endblock %}
+
+{% block content %}
+
+{% for item in list %}
+<li><a href="/descripcion/{{ item.id }}/">{{ item.Tipo}} - ${{item.PrecioV|floatformat:2 }}</a></li>
+{% endfor %}
+
+<a href="profile/">Your profile</a>
+<a href="/citas/{{user.id}}/">Citas</a>
+
+{% endblock %}
+
+
+
+
+
+<!-- <a href="{% url 'pago-paypal' libro.pk %}" class="btn btn-info btn-lg pull-right">
+    Comprar {{libro.precio}}€
+</a>
+
+El  url representa la view a la cual se va a mandar del boton para el pago para paypal
+Se necesita lo siguiente:
+
+Encontrar la forma de obtener el precio del traje a venta/renta respectivamente
+Desplegar precio en boton o pagina?
+Hacer funcionalidad de pago de paypal para poder hacer testeo con paypal
+Hacer vista/template general de los trajes para poder realizar el pago de paypal
+
+
+
+
+
+Extras:
+
+
+-->

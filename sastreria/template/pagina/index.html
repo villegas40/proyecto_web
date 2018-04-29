@@ -13,7 +13,7 @@
       <p>{{ item.nombre_producto }}</p>
       <p>Precio: ${{ item.precio }} MNX</p>
       <input class="btn btn-info" type="button"
-      onclick="window.location.href='/carrito/agregar/?id={{item.id}}'"
+      onclick="window.location.href='/descripcion/{{item.id}}'"
       value="¡Agregar al Carrito!">
       </input>
     </div>
@@ -21,3 +21,12 @@
   </div>
 </div>
 {% endblock %}
+
+
+<!--
+ <input class="btn btn-info" type="button"
+      onclick="window.location.href='/carrito/agregar/?id={{item.id}}'"
+      value="¡Agregar al Carrito!">
+      </input>
+
+-->

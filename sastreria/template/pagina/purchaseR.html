@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Paypal pago {% endblock %}
+{% block content %}
+
+<p>Purchase <b>{{ resource.Tipo }}</b> for <b>${{ resource.PrecioR|floatformat:2 }}</b></p>
+<p>
+<form action="{{ paypal_url }}" method="POST">
+  <input type="hidden" name="amount" value="{{ resource.PrecioR }}">
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="{{ paypal_email }}">
+  <input type="hidden" name="item_name" value="{{ resource.Tipo }}">
+  <input type="hidden" name="currency_code" value="MXN">
+  <input type="hidden" name="return" value="{{ paypal_return_url }}/purchased/{{ user.id }}/{{ resource.id }}">
+  <input type="hidden" name="cancel_return" value="{{ paypal_return_url}}/error/">
+  <input type="image" src="http://www.paypal.com/en_AU/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+</form>
+</p>
+
+{% endblock %}

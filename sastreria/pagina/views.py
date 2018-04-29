@@ -1,56 +1,20 @@
 # Sastreria
-from django.shortcuts import render, redirect
-from .forms import SignupForm, EditProfileForm # Formulario creado para el perfil
+from django.shortcuts import render, redirect,get_object_or_404
+from .forms import SignupForm, EditProfileForm,citas,Ventaform,Rentaform # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
-from .models import Perfil, Product
+from .models import Perfil, Product,Citas,Renta,Venta
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
 from django.contrib.auth.decorators import login_required # Decorador para que se necesite loguear para accesar ciertas vistas
-from carton.cart import Cart # Importa de la aplicacion de carton_tags
+from carton.cart import Cart,CartItem # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
-from sastreria.settings import BASE_URL
+
 # Create your views here.
 def home(request):
-    if 'categoria' in request.GET:
-        categoria = request.GET['categoria']
-    else:
-        categoria = 'todo'
-
-    # Pensar como hacer el filtrado de precios
-
-    if 'filtrado' in request.GET:
-        filtrado = request.GET['filtrado']
-    else:
-        filtrado = 'mostrar'
-
-    if categoria == 'todo':
-        item_list = Product.objects.all()
-    else:
-        item_list = Product.objects.filter(categoria=categoria)
-
-    item_list = [item for item in item_list]
-
-    if filtrado=='nuevo':
-        item_list.sort(key=(lambda item: item.fecha_alta))
-    elif filtrado=='barato':
-        item_list.sort(key=(lambda item: item.precio), reverse=False)
-    elif filtrado=='caro':
-        item_list.sort(key=(lambda item: item.precio), reverse=True)
-    elif filtrado=='mostrar':
-        item_list.sort(key=(lambda item: item.nombre_producto))
-
     product = Product.objects.all()
-    context = {
-    'BASE_URL': BASE_URL,
-    'categoria':categoria,
-    'filtrado':filtrado,
-    'item_list':item_list,
-    'product':product,
-    }
-
-    return render(request, 'pagina/index2.html', context)
+    return render(request, 'pagina/index.html', {'product': product})
 
 # Creacion de la vista de signup_view
 def signup_user_view(request):
@@ -124,8 +88,10 @@ def add(request):
     #return HttpResponse("Añadido al carrito.")
     return render(request, 'pagina/agregar-carrito.html', {'product': product})
 
+
 @login_required
 def show(request):
+    
     return render(request, 'pagina/mostrar-carrito.html')
 
 @login_required
@@ -135,3 +101,70 @@ def remove(request):
     cart.remove(product)
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
+
+@login_required
+def modulocitas(request,id):
+    form = citas()
+    if request.method == 'POST':
+        form = citas(request.POST,request.FILES)
+        if form.is_valid():
+            user = get_object_or_404(User,pk=id)
+            p = Citas()
+
+            p.CitaHora = form.cleaned_data["citahora"]
+            p.CitaFecha = form.cleaned_data["citafecha"]
+            p.LugarCita = form.cleaned_data["lugarcita"]
+            p.usuario = user
+            p.save()
+            return HttpResponseRedirect("/home/")
+    else:
+        form = citas()
+    ctx = {"form":form}
+
+    return render(request,'pagina/citas.html',ctx)
+
+@login_required
+def moduloventa(request,id):
+    form = Ventaform()
+    if request.method == 'POST':
+        form = Ventaform(request.POST,request.FILES)
+        if form.is_valid():
+            tux = get_object_or_404(Product,pk=id)
+            p = Venta()
+            p.FechaDeRecogida = form.cleaned_data["fecharecogida"]
+            p.TallaNum = form.cleaned_data["tallanum"]
+            p.TallaMedida = form.cleaned_data["tallamedida"]
+            p.LugarRecogida = form.cleaned_data["lugarrecogida"]
+            p.Tuxedo = tux
+            p.save()
+            return HttpResponseRedirect("/carrito/agregar/?id="+id)
+    else:
+        form = Ventaform()
+
+    ctx = {"form":form}
+    return render(request,'pagina/ventatraje.html',ctx)
+
+@login_required
+def modulorenta(request,id):
+    form = Rentaform()
+    if request.method == 'POST':
+        form = Rentaform(request.POST,request.FILES)
+        if form.is_valid():
+            tux = get_object_or_404(Product,pk=id)
+            p = Renta()
+            p.InicioRenta = form.cleaned_data['fecharecogida']
+            p.FinRenta = form.cleaned_data['finrenta']
+            p.TallaNum = form.cleaned_data['tallanum']
+            p.TallaMedida = form.cleaned_data['tallamedida']
+            p.Tuxedo = tux
+            p.LugarRecogida = form.cleaned_data['lugarrecogida']
+            p.save()
+            return HttpResponseRedirect("/carrito/agregar/?id="+id)
+    else:
+        form = Rentaform()
+
+    ctx = {"form":form}
+    return render(request,'pagina/rentatraje.html',ctx)
+
+
+
