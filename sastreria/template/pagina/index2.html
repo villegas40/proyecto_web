@@ -7,48 +7,48 @@
   <p>¡Checa nuestros nuestros prouctos!</p>
   <div class="row">
     <div class="col-sm-3">
-    <ul id='categorias'>
-      <li {% if categoria == "todo" %} class="current">
-        {% else %}<a href="{{BASE_URL}}{% if filtrado != 'todo' %}?filtrado={{filtrado}}{% endif %}">
+    <ul id='categories'>
+      <li {% if categoria == "todo" %} >
+        {% else %}><a href="{{BASE_URL}}{% if filtrado != 'mostrar' %}?filtrado={{filtrado}}{% endif %}">
         {% endif %}todo</a>
-        <a href="#">Todo2</a>
       </li>
-      <li {% if categoria == "renta"%} class="current">
-        {% else %} <a href="{{BASE_URL}}?categoria=renta{% if filtrado != 'nuevo' %}&filtrado={{filtrado}}{% endif %}">
+      <li {% if categoria == "renta"%} >
+        {% else %}> <a href="{{BASE_URL}}?categoria=renta{% if filtrado != 'mostrar' %}&filtrado={{filtrado}}{% endif %}">
         {% endif %} renta </a>
       </li>
       <li {% if categoria == "venta" %} class="current">
-        {% else %} <a href="{{BASE_URL}}?categoria=venta{% if filtrado != 'nuevo' %}&filtrado={{filtrado}}{% endif %}">
+        {% else %}> <a href="{{BASE_URL}}?categoria=venta{% if filtrado != 'mostrar' %}&filtrado={{filtrado}}{% endif %}">
         {% endif %} venta </a>
       </li>
     </ul>
     </div>
     <div class="col-sm-3">
     <ul id = "filtrados">
-      <li {% if filtrado == "todo" %} class="current">
-        {% else %}<a href="{{BASE_URL}}{%if categoria != 'todo'%}?categoria={{categoria}}{%endif%}">
+      <li {% if filtrado == "muestra" %} >
+        {% else %}><a href="{{BASE_URL}}{%if categoria != 'todo'%}?categoria={{categoria}}{%endif%}">
         {%endif%}todo</a>
       </li>
-      <li {% if filtrado == "nuevo" %} class="current">
+      <li {% if filtrado == "nuevo" %} >
     		{% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=nuevo">
     		{% endif %}nuevo</a>
     	</li>
-      <li {% if filtrado == "barato" %} class="current">
-        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}sort=barato">
+      <li {% if filtrado == "barato" %} >
+        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=barato">
         {% endif %}barato</a>
       </li>
-      <li {% if filtrado == "caro" %} class="current">
-        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}sort=caro">
+      <li {% if filtrado == "caro" %} >
+        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=caro">
         {% endif %}caro</a>
       </li>
+
     </ul>
     </div>
     </div>
     <div id="listing" class="row">
       {% for item in item_list %}
       <div class="col-sm-3" style="background-color:white;">
-        <p><img src="{{ item.image_url }}" width="200" height="200"></p>
-        <p></p>
+        <p> <a href="/login"> <img src="{{ item.image_url }}" width="200" height="200"></a></p>
+
         <p>{{ item.nombre_producto }}</p>
         <p>Precio: ${{ item.precio }} MNX</p>
         <input class="btn btn-info" type="button"

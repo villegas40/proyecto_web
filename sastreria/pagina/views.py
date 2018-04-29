@@ -23,7 +23,7 @@ def home(request):
     if 'filtrado' in request.GET:
         filtrado = request.GET['filtrado']
     else:
-        filtrado = 'todo'
+        filtrado = 'mostrar'
 
     if categoria == 'todo':
         item_list = Product.objects.all()
@@ -38,16 +38,18 @@ def home(request):
         item_list.sort(key=(lambda item: item.precio), reverse=False)
     elif filtrado=='caro':
         item_list.sort(key=(lambda item: item.precio), reverse=True)
-    elif filtrado=='todo':
+    elif filtrado=='mostrar':
         item_list.sort(key=(lambda item: item.nombre_producto))
 
+    product = Product.objects.all()
     context = {
     'BASE_URL': BASE_URL,
     'categoria':categoria,
     'filtrado':filtrado,
-    'item_list':item_list
+    'item_list':item_list,
+    'product':product,
     }
-    #product = Product.objects.all()
+
     return render(request, 'pagina/index2.html', context)
 
 # Creacion de la vista de signup_view
