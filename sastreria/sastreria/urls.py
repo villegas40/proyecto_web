@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views # Para usar login y logout
 from pagina import views
-from pagina.views import modulocitas,desplegarcitas,citasdescripcion
+from pagina.views import modulocitas,desplegarcitas,citasdescripcion,sucursalesv
 
 # Importar las vistas genericas ofrecidas por django para resetear contraseña
 from django.contrib.auth.views import (
@@ -50,4 +50,5 @@ urlpatterns = [
     re_path(r'citas/(?P<id>\d+)/$',modulocitas,name='modulocitas'),
     re_path(r'citasdescripcion/(?P<id>\d+)/$',citasdescripcion,name='modulocitas'),
     path('desplegarcitas/',desplegarcitas),
+    path('sucursales/',sucursalesv),
 ]
