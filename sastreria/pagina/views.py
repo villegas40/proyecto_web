@@ -173,3 +173,7 @@ def desplegarcitas(request,pk=None):
 def citasdescripcion(request,id):
     resource = get_object_or_404(Citas,pk=id)
     return render(request,'pagina/descripcioncitas.html',{'resource':resource})
+
+def sucursalesv(request):
+
+    return render(request,'pagina/sastrerias.html')
