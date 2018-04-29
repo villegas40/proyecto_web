@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views # Para usar login y logout
 from pagina import views
+from pagina.views import modulocitas,moduloventa,modulorenta
+from pagos.views import descripcion,purchased,error,download,downloadr
 # Importar las vistas genericas ofrecidas por django para resetear contraseña
 from django.contrib.auth.views import (
     password_reset,
@@ -29,7 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.login, {'template_name': 'pagina/login.html'}, name = 'login'),
     path('logout/', auth_views.logout, {'template_name':'pagina/logout.html'}, name='logout'),
-    re_path('home/', views.home, name = 'home_view'),
+    path('home/', views.home, name = 'home_view'),
     path('register/', views.signup_user_view, name = 'register_view'),
     path('profile/', views.view_profile, name = "profile_view"),
     path('edit_profile/', views.edit_profile, name = 'edit_profile_view'),
@@ -45,6 +47,13 @@ urlpatterns = [
     path('carrito/mostrar/', views.show, name='mostrar_carrito_view'),
     re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
     re_path(r'^carrito/remover/$',views.remove, name='agregar_carrito_view'),
-
-
+    #NUEVAS URL
+    re_path(r'citas/(?P<id>\d+)/$',modulocitas,name='modulocitas'),
+    path('error/',error,name='erro'),
+    re_path(r'^download/(?P<id>\d+)/$',download),
+    re_path(r'^downloadr/(?P<id>\d+)/$',downloadr),
+    re_path(r'^purchased/(?P<uid>\d+)/(?P<id>\d+)/$',purchased),
+    re_path(r'VentaTraje/(?P<id>\d+)/$',moduloventa,name='moduloventa'),
+    re_path(r'RentaTraje/(?P<id>\d+)/$',modulorenta,name='modulorenta'),
+    re_path(r'descripcion/(?P<id>\d+)/$',descripcion,name='descripcion'),
 ]

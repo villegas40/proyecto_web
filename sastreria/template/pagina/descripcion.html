@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Descripcion articulo {% endblock %}
+{% block content %}
+<p>Articulo<b>{{resource.Tipo}}</b> Diponible para venta y renta segun eleccion</p>
+<p>Descripcion</p>
+<p><b>{{resource.Descripcion}}</b></p>
+<p>Color:<b>{{resource.Color}}</b></p>
+<p>Tipo de tela:<b>{{resource.TipodeTela}}</b></p>
+<p>Precio de venta: <b>${{ resource.precio|floatformat:2 }}</b></p>
+<p>Precio renta por dia : <b>${{ resource.PrecioR|floatformat:2 }}</b></p>
+<p><a href="/VentaTraje/{{ resource.id }}/" class="btn btn-default">Comprar</a>
+<a href="/RentaTraje/{{ resource.id }}/" class="btn btn-default">Rentar</a></p>
+
+
+
+{% endblock %}
+
+<!--
+Implementar que de tal forma de aqui te mande a un form donde se llenaran los datos necesario de compra/renta respecticamente y que no se guarde hasta que el pago se complete.
+Despues de llenarse los datos se pasara al boton de paypal para proseguir con el pago.
+Agregarlo a urls porque aun no esta.
+Agregar continuidad con las otras, ya que esta separado
+
+-->
