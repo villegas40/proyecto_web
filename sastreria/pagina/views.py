@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required # Decorador para que s
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
+from django.conf import settings
 # Create your views here.
 def home(request):
     if 'categoria' in request.GET:
@@ -131,7 +132,8 @@ def info(request):
 
 @login_required
 def show(request):
-    return render(request, 'pagina/mostrar-carrito.html')
+
+    return render(request, 'pagina/mostrar-carrito.html',{'paypal_url':settings.PAYPAL_URL,'paypal_email':settings.PAYPAL_EMAIL,'paypal_return_url':settings.PAYPAL_RETURN_URL})
 
 @login_required
 def remove(request):
