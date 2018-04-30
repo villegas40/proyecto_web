@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} Pedido  {% endblock %}
+{% block content %}
+Fecha del pedido: <b>{{resource.Purchase_at}}</b>
+<p>Contenido :</P>
+  {% for item in resource.resource.all %}
+  <li>{{item.nombre_producto}} - ${{item.precio}}</li>
+  {% endfor %}
+{% endblock %}
