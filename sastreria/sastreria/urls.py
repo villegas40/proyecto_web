@@ -44,7 +44,7 @@ urlpatterns = [
     name = 'password_reset_confirm'),
     re_path(r'^password_reset_complete/$', password_reset_complete, {'template_name':'reset/password_reset_complete.html',},
     name = 'password_reset_complete'),
-    path('carrito/mostrar/', views.show, name='mostrar_carrito_view'),
+    re_path(r'^carrito/mostrar/$', views.show, name='mostrar_carrito_view'),
     re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
     re_path(r'^carrito/remover/$',views.remove, name='agregar_carrito_view'),
     re_path(r'citas/(?P<id>\d+)/$',modulocitas,name='modulocitas'),

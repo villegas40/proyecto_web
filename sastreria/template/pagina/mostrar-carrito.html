@@ -21,9 +21,7 @@
           <p>{{item.price}}</p>
         {% endfor %}
         <p>
-          {% for item in cart.items %}
-            {{item.price|add:item.price}}
-          {% endfor %}
+          {{ cart.total }}
         </p>
       </div>
 
@@ -31,6 +29,8 @@
         {% for item in cart.items %}
           <p>{{item.quantity}}</p>
         {% endfor %}
+
+        {{cart.count}}
       </div>
       <div class="col-sm-3">
         {% for item in cart.items %}
@@ -39,7 +39,17 @@
             onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
             value="Eliminar">
             </input>
-        </p>
+
+            <div class="dropdown">
+              <button id="dropMenu" type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"> Eliminar</button>
+              <div class="dropdown-menu" aria-labelledby="dropMenu">
+                <a class="dropdown-item" href="/carrito/mostrar/?id={{product.id}}">Eliminar Uno</a>
+                <a class="dropdown-item" href="/carrito/remover/?id={{product.id}}">Elimiar Todo</a>
+              </div>
+            </div>
+
+            </p>
         {% endfor %}
       </div>
     </div>

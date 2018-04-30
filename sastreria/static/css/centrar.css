@@ -3,3 +3,7 @@ p.center {  text-align: center;  }
 p.left {  text-align: left;  }
 
 p.right {  text-align: right;  }
+
+footer {
+    display: block;
+}

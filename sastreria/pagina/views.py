@@ -141,6 +141,12 @@ def remove(request):
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
 
+@login_required
+def removeSingle(request):
+    cart = Cart(request.session)
+    product = Product.objects.get(id=request.GET.get('id'))
+    cart.remove_single(product)
+    return render(request, 'pagina/mostrar-carrito.html', {'product':product})
 
 @login_required
 def modulocitas(request,id):
