@@ -20,17 +20,15 @@
         {% for item in cart.items %}
           <p>{{item.price}}</p>
         {% endfor %}
-        <p>
-          {% for item in cart.items %}
-            {{item.price|add:item.price}}
-          {% endfor %}
-        </p>
+
+        {{cart.total}}
       </div>
 
       <div class="col-sm-3">
         {% for item in cart.items %}
           <p>{{item.quantity}}</p>
         {% endfor %}
+        {{cart.count}}
       </div>
       <div class="col-sm-3">
         {% for item in cart.items %}
