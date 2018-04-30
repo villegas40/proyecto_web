@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+  <h2>Profile</h2>
+  <p>Username: {{user}}</p>
+  <p>First name: {{user.first_name}}</p>
+  <p>Last name: {{user.last_name}}</p>
+  <p>Birth date: {{user.perfil.birth_date}}</p>
+  <p>Email: {{user.email}}</p>
+  Edit Profile: <a href="/edit_profile">Click here</a>
+  {% for item in product %}
+    <p>{{ product.nombre_producto }}</p>
+  {% endfor %}
+<p><a href="/desplegarcitas/">Citas hechas</a></p>
+
+{% endblock %}

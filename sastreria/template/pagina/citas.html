@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Citas - Sastreria Beltran {% endblock %}
+{% block content %}
+
+<form method="POST">
+{% csrf_token %}
+<p>Horas laborales: 8:00AM - 6:00PM </p>
+<p>Dias laborales Lunes-Sabado </p>
+{{form.as_p}}
+
+<input type="submit" name="Register" value="Registrar">
+<input type="reset" name="Cancel" value="Borrar">
+<p><a href="/paypaltest/">Clic para regresar al inicio</a></p>
+
+{% endblock %}
+
+<!--
+Arreglar problema del usuario
+Agregar validacion de fechas y hora de trabajo correcta
+Quitar dia domingo porque no se trabaja
+Verificar disponibilidad y lanzar alerta en caso de que no se llegue a agendar la cita para que el usuario pueda saber que no se guardo.
+
+-->
