@@ -51,4 +51,5 @@ urlpatterns = [
     re_path(r'citasdescripcion/(?P<id>\d+)/$',citasdescripcion,name='modulocitas'),
     path('desplegarcitas/',desplegarcitas),
     path('sucursales/',sucursalesv),
+    re_path(r'^articulo/info/$', views.info, name='articulo_info')
 ]

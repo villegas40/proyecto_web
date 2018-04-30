@@ -47,7 +47,7 @@
     <div id="listing" class="row">
       {% for item in item_list %}
       <div class="col-sm-3" style="background-color:white;">
-        <p> <a href="/login"> <img src="{{ item.image_url }}" width="200" height="200"></a></p>
+        <p> <a href="/articulo/info/?id={{item.id}}"> <img src="{{ item.image_url }}" width="200" height="200"></a></p>
 
         <p>{{ item.nombre_producto }}</p>
         <p>Precio: ${{ item.precio }} MNX</p>

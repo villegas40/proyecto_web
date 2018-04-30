@@ -125,6 +125,11 @@ def add(request):
     return render(request, 'pagina/agregar-carrito.html', {'product': product})
 
 @login_required
+def info(request):
+    product = Product.objects.get(id=request.GET.get('id'))
+    return render(request, 'pagina/articulos.html', {'product': product})
+
+@login_required
 def show(request):
     return render(request, 'pagina/mostrar-carrito.html')
 
