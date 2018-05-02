@@ -63,7 +63,13 @@
       </div>
     </div>
 </div>
+<p>
+  <input class="btn btn-info" type="button"
+  onclick="window.location.href='/pago/'"
+  value="¡Paga!">
+  </input>
 
+</p>
 <p>
 <form action="{{ paypal_url }}" method="POST">
   {% csrf_token %}

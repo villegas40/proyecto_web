@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import SignupForm, EditProfileForm,citas # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
-from .models import Perfil, Product,Citas,Purchase
+from .models import Perfil, Product, Citas, Purchase, Orders
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
@@ -12,6 +12,8 @@ from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
 from django.conf import settings
+from decimal import *
+
 # Create your views here.
 def home(request):
     if 'categoria' in request.GET:
@@ -143,13 +145,23 @@ def remove(request):
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
 
+def pagoCompletado(request):
+    cart = Cart(request.session)
+    dec = Decimal(cart.total())
+    orders = Orders()
+    for item in cart.items:
+        orders.nombre_producto = item.product.nombre_producto
+        orders.cantitad = item.quantity
+    orders.precioTotal = dec
+    return render(request, 'pagina/pago.html')
+'''Checar despues
 @login_required
 def removeSingle(request):
     cart = Cart(request.session)
     product = Product.objects.get(id=request.GET.get('id'))
     cart.remove_single(product)
-    return render(request, 'pagina/mostrar-carrito.html', {'product':product})
-
+    return redirect(request, 'pagina/mostrar-carrito.html', {'product':product})
+'''
 @login_required
 def modulocitas(request,id):
     form = citas()

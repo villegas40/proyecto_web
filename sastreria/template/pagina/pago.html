@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <h1>Bienvenidos</h1>
+  <p>Tu orden ha sido puesta</p>
+  <div class="row">
+    {% for item in cart.items %}
+    <div class="col-sm-3" style="background-color:white;">
+      <p>{{ item.nombre_producto }}</p>
+      <p>Precio: ${{ item.precio }} MNX</p></p>
+    </div>
+    {% endfor %}
+    <p>Precio Total: {{cart.total}}</p>
+  </div>
+</div>
+{% endblock %}

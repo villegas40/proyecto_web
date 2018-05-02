@@ -68,3 +68,8 @@ class Purchase(models.Model):
     purchaser = models.ForeignKey(User,on_delete=models.CASCADE)
     Purchase_at = models.DateTimeField(auto_now_add=True)
     tx = models.CharField(max_length=250)
+
+class Orders(models.Model):
+    nombre_producto = models.CharField(max_length = 100, blank=True)
+    cantitad = models.IntegerField()
+    precioTotal = models.DecimalField(max_digits=6,decimal_places=2)

@@ -54,4 +54,5 @@ urlpatterns = [
     path('mostrarpedidos/',mostrarpedidos),
     path('sucursales/',sucursalesv),
     re_path(r'^articulo/info/$', views.info, name='articulo_info'),
+    path('pago/', views.pagoCompletado, name='pago_view')
 ]
