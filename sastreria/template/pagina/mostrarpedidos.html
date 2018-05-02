@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Pedidos {% endblock %}
+
+{% block content %}
+<p>Pedidos  realizadas</p>
+
+{% for item in list %}
+<li><a href="/Pedidosdescripcion/{{ item.id }}/">{{ item.id}} - {{item.Purchase_at}}</a></li>
+{% endfor %}
+
+<p>Clic al pedido para mayor informacion </p>
+
+
+{% endblock %}

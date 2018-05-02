@@ -64,7 +64,7 @@ class Citas(models.Model):
                                         ("hora10",("17:00:00")),
                                         ("hora11",("18:00:00"))),default =1,max_length=9)
 class Purchase(models.Model):
-    resource = models.ForeignKey(Product,on_delete=models.CASCADE)
+    resource = models.ManyToManyField(Product)
     purchaser = models.ForeignKey(User,on_delete=models.CASCADE)
     Purchase_at = models.DateTimeField(auto_now_add=True)
     tx = models.CharField(max_length=250)

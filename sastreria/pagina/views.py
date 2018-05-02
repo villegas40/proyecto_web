@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .forms import SignupForm, EditProfileForm,citas # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
-from .models import Perfil, Product,Citas
+from .models import Perfil, Product,Citas,Purchase
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required # Decorador para que s
 from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
+from django.conf import settings
 # Create your views here.
 def home(request):
     if 'categoria' in request.GET:
@@ -131,7 +132,8 @@ def info(request):
 
 @login_required
 def show(request):
-    return render(request, 'pagina/mostrar-carrito.html')
+
+    return render(request, 'pagina/mostrar-carrito.html',{'paypal_url':settings.PAYPAL_URL,'paypal_email':settings.PAYPAL_EMAIL,'paypal_return_url':settings.PAYPAL_RETURN_URL})
 
 @login_required
 def remove(request):
@@ -179,12 +181,25 @@ def desplegarcitas(request,pk=None):
     p = Citas.objects.all().filter(usuario = user)
 
     return render(request,'pagina/desplegarcitas.html',{'list': Citas.objects.all().filter(usuario=user)})
+@login_required
+def mostrarpedidos(request,pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user =request.user
+
+    return render(request,'pagina/mostrarpedidos.html',{'list':Purchase.objects.all().filter(purchaser=user)})
+
 
 @login_required
 def citasdescripcion(request,id):
     resource = get_object_or_404(Citas,pk=id)
     return render(request,'pagina/descripcioncitas.html',{'resource':resource})
+@login_required
+def pedidosdescripcion(request,id):
+    resource = get_object_or_404(Purchase,pk=id)
+    return render(request,'pagina/pedidosdescripcion.html',{'resource':resource})
+
 
 def sucursalesv(request):
-
     return render(request,'pagina/sastrerias.html')
