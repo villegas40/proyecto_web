@@ -7,7 +7,7 @@ from django.conf import settings
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from carton.cart import Cart # Importa de la aplicacion de carton_tags
 #Prueba de integrar directamente el paypal.py aqui en vistas
 import decimal
 import urllib
