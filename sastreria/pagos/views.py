@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import RedirectView, TemplateView
-from pagina.models import Product,Purchase
+from pagina.models import Product,Purchase,Orders
 from django.urls import reverse
 from django.http import HttpResponse
 from django.conf import settings
@@ -49,10 +49,10 @@ def downloadr(request,id):
 	return render(request,'pagina/purchaseR.html',{'resource':resource,'paypal_url':settings.PAYPAL_URL,'paypal_email':settings.PAYPAL_EMAIL,'paypal_return_url':settings.PAYPAL_RETURN_URL})
 
 @login_required
-def purchased(request,uid,id):
+def purchased(request,id):
 
-	resource = get_object_or_404(Product,pk=id)
-	user = get_object_or_404( User, pk=uid )
+	resource = get_object_or_404(Orders,pk=id)
+
 
 	if request.GET.get('tx'):
 		tx = request.GET['tx']
@@ -62,16 +62,19 @@ def purchased(request,uid,id):
 		st = request.GET['st']
 	#	print(st)
 		try:
-			existing = Purchase.objects.get(tx=tx)
+			existing = Orders.objects.get(tx=tx)
 			return render(request,'pagina/error.html',{'error':"Duplicate transaction"})
-		except Purchase.DoesNotExist:
+		except Orders.DoesNotExist:
 			result = verificar(tx)
 
-			xd = resource.PrecioV
 
-			if result.success() and str(resource.precio) == result.amount(): #valid
-				purchase = Purchase(resource=resource,purchaser=user,tx=tx)
-				purchase.save()
+
+			if result.success() and str(resource.precioTotal) == result.amount(): #valid
+				resource.tx = tx
+				resource.status = "PAGADO"
+				resource.save()
+				
+			#cambiar tx del modelo y cambiar status a pagado
 
 				return render(request,'pagina/purchased.html',{'resource':resource})
 			else:
