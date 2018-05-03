@@ -63,13 +63,14 @@ class Citas(models.Model):
                                         ("hora9",("16:00:00")),
                                         ("hora10",("17:00:00")),
                                         ("hora11",("18:00:00"))),default =1,max_length=9)
+
+class Orders(models.Model):
+    nombre_producto = models.ManyToManyField(Product,blank=True,default=1)
+    cantitad = models.IntegerField()
+    precioTotal = models.DecimalField(max_digits=6,decimal_places=2)
+
 class Purchase(models.Model):
-    resource = models.ManyToManyField(Product)
+    resource = models.ForeignKey(Orders,default=1,on_delete=models.CASCADE)
     purchaser = models.ForeignKey(User,on_delete=models.CASCADE)
     Purchase_at = models.DateTimeField(auto_now_add=True)
     tx = models.CharField(max_length=250)
-
-class Orders(models.Model):
-    nombre_producto = models.CharField(max_length = 100, blank=True)
-    cantitad = models.IntegerField()
-    precioTotal = models.DecimalField(max_digits=6,decimal_places=2)

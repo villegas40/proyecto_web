@@ -12,7 +12,7 @@ from carton.cart import Cart # Importa de la aplicacion de carton_tags
 from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
 from django.conf import settings
-from decimal import *
+from decimal import Decimal
 
 # Create your views here.
 def home(request):
@@ -145,15 +145,36 @@ def remove(request):
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
 
-def pagoCompletado(request):
+def pagoCompletado(request,pricet,pricetd,commit=True):
     cart = Cart(request.session)
-    dec = Decimal(cart.total())
+    dec = Decimal(pricet)
+    dec1 = cart.total #Se hace asi , no cart.total()
+    #print(dec1)
+
     orders = Orders()
+
     for item in cart.items:
-        orders.nombre_producto = item.product.nombre_producto
-        orders.cantitad = item.quantity
+        orders.nombre_producto.add(Product.objects.get(id=item.product.id))
+        #for xd in Product:
+        #product2 = Product.objects.all()
+    #    prdct = Product.objects.filter(id = item.product.id)
+    #    print(prdct)
+        #print(type(product))
+
+    #    if prdct.count() > 0:
+            #print(Product.objects.filter(id = item.product.id).count())
+        #    print(item.product.id)
+
+    #        orders.nombre_producto.add(prdct)
+
+    orders.cantitad = item.quantity
     orders.precioTotal = dec
-    return render(request, 'pagina/pago.html')
+    if commit:
+        orders.save()
+
+    return render(request, 'pagina/pago.html',{'resource':Cart(request.session)})
+
+
 '''Checar despues
 @login_required
 def removeSingle(request):
@@ -161,6 +182,14 @@ def removeSingle(request):
     product = Product.objects.get(id=request.GET.get('id'))
     cart.remove_single(product)
     return redirect(request, 'pagina/mostrar-carrito.html', {'product':product})
+ Usar este metodo para que cuando le de al boton de pagar despliegue el contenido
+ del pedido y asi poder proceder a pagar , cuando este pague cambiara el payment_status
+ del modelo a pagado y asi poder desplegar todo.
+ si no se realiza el pago el payment_status continuara en sin pagar
+ Tareas a investigar:
+ -Como modifcar un modelo,registro
+ -mandar el registro a la siguiente template
+ -como guardar un ManyToManyField viniendo del Carrito
 '''
 @login_required
 def modulocitas(request,id):

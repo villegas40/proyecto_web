@@ -21,24 +21,17 @@
         {% for item in cart.items %}
           <p>{{item.price}}</p>
         {% endfor %}
-<<<<<<< HEAD
+
         <p>
           {{ cart.total }}
         </p>
-=======
-
-        {{cart.total}}
->>>>>>> 623ef2fa43727bb00de42de5144f81dcb2e31f00
+      
       </div>
 
       <div class="col-sm-3">
         {% for item in cart.items %}
           <p>{{item.quantity}}</p>
         {% endfor %}
-<<<<<<< HEAD
-
-=======
->>>>>>> 623ef2fa43727bb00de42de5144f81dcb2e31f00
         {{cart.count}}
       </div>
       <div class="col-sm-3">
@@ -65,8 +58,8 @@
 </div>
 <p>
   <input class="btn btn-info" type="button"
-  onclick="window.location.href='/pago/'"
-  value="¡Paga!">
+  onclick="window.location.href='/pago/{{cart.total}}/'"
+  value="¡Pagar!">
   </input>
 
 </p>
