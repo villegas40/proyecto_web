@@ -5,7 +5,7 @@
 <p>Pedidos  realizadas</p>
 
 {% for item in list %}
-<li><a href="/Pedidosdescripcion/{{ item.id }}/">{{ item.id}} - {{item.Purchase_at}}</a></li>
+<li><a href="/Pedidosdescripcion/{{ item.id }}/">Numero de pedido: {{ item.id}}  Fecha de compra: {{item.Purchase_at}} - Precio Total: {{item.precioTotal}}</a></li>
 {% endfor %}
 
 <p>Clic al pedido para mayor informacion </p>

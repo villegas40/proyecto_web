@@ -7,8 +7,15 @@
  <!--
  Agregar desgloce de cosas compradas aqui
  -->
-	Haz comprado exitosamente<b>{{resource.precioTotal}}</b>
-<p><a href="/paypaltest/">Clic para regresar al inicio</a></p>
+	Haz comprado exitosamente lo siguiente:
+	<p>Numero de orden: {{resource.id}}</p>
+	<p>Contenido :</P>
+	  {% for item in resource.nombre_producto.all %}
+	  <li>{{item.nombre_producto}} - Precio : ${{item.precio}}</li>
+
+	  {% endfor %}
+	<p>Precio total: ${{resource.precioTotal}}</p>
+<p><a href="/home/">Clic para regresar al inicio</a></p>
 
 </p>
 
