@@ -1,18 +1,86 @@
 {% extends 'base.html' %}
-{% block title %} Profile {% endblock %}
+{% block title %} Perfil {% endblock %}
 
 {% block content %}
-  <h2>Profile</h2>
-  <p>Username: {{user}}</p>
-  <p>First name: {{user.first_name}}</p>
-  <p>Last name: {{user.last_name}}</p>
-  <p>Birth date: {{user.perfil.birth_date}}</p>
-  <p>Email: {{user.email}}</p>
-  Edit Profile: <a href="/edit_profile">Click here</a>
-  {% for item in product %}
-    <p>{{ product.nombre_producto }}</p>
-  {% endfor %}
-<p><a href="/desplegarcitas/">Citas hechas</a></p>
-<p><a href="/mostrarpedidos/">Pedidos Hechos</a><p>
-  
+  <h2>Perfil</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Nombre de usuario:</p>
+      </div>
+      <div class="col-sm-3">
+        <p>{{user}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Nombre:</p>
+      </div>
+      <div class="col-sm-3">
+        <p>{{user.first_name}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Apellidos</p>
+      </div>
+      <div class="col-sm-3">
+        <p>{{user.last_name}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Fecha de Nacimiento:</p>
+      </div>
+      <div class="col-sm-3">
+        <p>{{user.perfil.birth_date}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Correo Electronico:</p>
+      </div>
+      <div class="col-sm-3">
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Editar Perfil:</p>
+      </div>
+      <div class="col-sm-3">
+        <p><input class="btn btn-info" type="button"
+        onclick="window.location.href='/edit_profile/'"
+        value="Editar">
+      </input></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Ver citas realizadas: </p>
+      </div>
+      <div class="col-sm-3">
+        <p><input class="btn btn-info" type="button" onclick="window.location.href='/desplegarcitas/'" value="Citas"></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3" style="background-color:lavender;">
+        <p>Historial de Pedidos:</p>
+      </div>
+      <div class="col-sm-3">
+        <p><input class="btn btn-info" type="button" onclick="window.location.href='/mostrarpedidos/'" value="Pedidos"></p>
+      </div>
+    </div>
+    {% for item in product %}
+      <p>{{ product.nombre_producto }}</p>
+    {% endfor %}
+
+
+
+  </div>
+
+
 {% endblock %}

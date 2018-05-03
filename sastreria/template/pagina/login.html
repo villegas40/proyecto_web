@@ -4,13 +4,13 @@
 {% block content %}
   <form method="post">
     <blockquote class = "blockquote text-center">
-      <h2>Login</h2>
+      <h2>Iniciar Sesión</h2>
       {% csrf_token %}
       {{form.as_p}}
 
       <button type="submit"  class = "btn btn-secondary">Login</button>
       <a href="/password_reset">
-        Olvide mi contasena
+        Olvidé mi contaseña
       </a>
     </blockquote>
   </form>

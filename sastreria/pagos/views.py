@@ -50,7 +50,7 @@ def downloadr(request,id):
 
 @login_required
 def purchased(request,id):
-
+	cart = Cart(request.session)
 	resource = get_object_or_404(Orders,pk=id)
 
 
@@ -73,7 +73,8 @@ def purchased(request,id):
 				resource.tx = tx
 				resource.status = "PAGADO"
 				resource.save()
-				
+				cart.clear() #Eliminar todo del carrito
+
 			#cambiar tx del modelo y cambiar status a pagado
 
 				return render(request,'pagina/purchased.html',{'resource':resource})

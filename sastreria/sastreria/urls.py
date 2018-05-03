@@ -56,4 +56,5 @@ urlpatterns = [
     re_path(r'^articulo/info/$', views.info, name='articulo_info'),
     path('pago/', views.pagoCompletado, name='pago_view'),
     re_path(r'^purchased/(?P<id>\d+)/$',purchased),
+    path('carrito/eliminar/', views.eliminarCarrito, name='eliminarCarrito_view')
 ]
