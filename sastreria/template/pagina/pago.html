@@ -6,10 +6,10 @@
   <h1>Bienvenidos</h1>
   <p>Tu orden ha sido puesta</p>
   <div class="row">
-    {% for item in cart.items %}
+    {% for item in resource.items %}
     <div class="col-sm-3" style="background-color:white;">
-      <p>{{ item.nombre_producto }}</p>
-      <p>Precio: ${{ item.precio }} MNX</p></p>
+      <p>{{ item.product.nombre_producto }}</p>
+      <p>Precio: ${{ item.product.precio }} MXN</p></p>
     </div>
     {% endfor %}
     <p>Precio Total: {{cart.total}}</p>
