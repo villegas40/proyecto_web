@@ -185,6 +185,10 @@ def pagoCompletado(request,pk=None):
     rorders = get_object_or_404(Orders,pk=orders.id)
     return render(request, 'pagina/pago.html',{'resource':Cart(request.session),'orden':rorders,'paypal_url':settings.PAYPAL_URL,'paypal_email':settings.PAYPAL_EMAIL,'paypal_return_url':settings.PAYPAL_RETURN_URL})
 
+def eliminarCarrito(request):
+    cart = Cart(request.session)
+    cart.clear()
+    return HttpResponse("Carrito Vacio")
 
 '''Checar despues
 @login_required
@@ -247,6 +251,7 @@ def mostrarpedidos(request,pk=None):
 def citasdescripcion(request,id):
     resource = get_object_or_404(Citas,pk=id)
     return render(request,'pagina/descripcioncitas.html',{'resource':resource})
+
 @login_required
 def pedidosdescripcion(request,id):
     resource = get_object_or_404(Purchase,pk=id)

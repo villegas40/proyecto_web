@@ -27,7 +27,7 @@
     {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home/"> Inicio <span class="sr-only">(current)</span></a>
       </li>
       <!--
       <li class="nav-item dropdown">
@@ -44,13 +44,13 @@
     -->
 
       <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
+        <a class="nav-link" href="/profile">Perfil</a>
       </li>
       <li class= "nav-item">
         <a class="nav-link" href="/citas/{{user.id}}/">Citas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Cerrar Sesión</a>
       </li>
 
       <li class="nav-item">
@@ -66,10 +66,10 @@
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
     <ul class= "navbar-nav ml-auto">
       <li class="nav-item nav-left" >
-        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/login">Iniciar Sesión</a>
       </li>
       <li class = "nav-item">
-        <a class = "nav-link" href="/register"> Registers </a>
+        <a class = "nav-link" href="/register"> Registrarse </a>
       </li>
     </ul>
     {% endif %}

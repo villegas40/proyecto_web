@@ -7,7 +7,7 @@ from django.conf import settings
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from carton.cart import Cart # Importa de la aplicacion de carton_tags
 #Prueba de integrar directamente el paypal.py aqui en vistas
 import decimal
 import urllib
@@ -50,7 +50,7 @@ def downloadr(request,id):
 
 @login_required
 def purchased(request,id):
-
+	cart = Cart(request.session)
 	resource = get_object_or_404(Orders,pk=id)
 
 
@@ -73,7 +73,8 @@ def purchased(request,id):
 				resource.tx = tx
 				resource.status = "PAGADO"
 				resource.save()
-				
+				cart.clear() #Eliminar todo del carrito
+
 			#cambiar tx del modelo y cambiar status a pagado
 
 				return render(request,'pagina/purchased.html',{'resource':resource})

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %} Register {% endblock %}
+{% block title %} Registrarse {% endblock %}
 
 {% block content %}
-  <h2>Sing Up</h2>
+  <p><h2>Registrate</h2></p>
 <div class = "container">
   <form method="post">
     {% csrf_token %}
@@ -20,7 +20,7 @@
     </p>
     {% endfor %}
 
-    <button type="submit" class = "btn btn-secondary" name="singup">Sing Up</button>
+    <button type="submit" class = "btn btn-secondary" name="singup">Registrarse</button>
   </form>
   <br>
 </div>
