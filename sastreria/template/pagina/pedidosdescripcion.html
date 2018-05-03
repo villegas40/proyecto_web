@@ -3,7 +3,11 @@
 {% block content %}
 Fecha del pedido: <b>{{resource.Purchase_at}}</b>
 <p>Contenido :</P>
-  {% for item in resource.resource.all %}
-  <li>{{item.nombre_producto}} - ${{item.precio}}</li>
+  {% for item in resource.nombre_producto.all %}
+  <li>{{item.nombre_producto}} - Precio : ${{item.precio}}</li>
+
   {% endfor %}
+<p>Precio total: ${{resource.precioTotal}}</p>
+<p><a href="/home/">Clic para regresar al inicio</a></p>
+
 {% endblock %}

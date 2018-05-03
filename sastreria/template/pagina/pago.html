@@ -3,8 +3,7 @@
 {% block title %} Home {% endblock %}
 {% block content %}
 <div class="container-fluid">
-  <h1>Bienvenidos</h1>
-  <p>Tu orden ha sido puesta</p>
+  <h1>Confirmacion del pedido</h1>
   <div class="row">
     {% for item in resource.items %}
     <div class="col-sm-3" style="background-color:white;">
@@ -16,6 +15,7 @@
   </div>
 </div>
 <p>
+  <P>Metodo de pago:</p>
 <form action="{{ paypal_url }}" method="POST">
   {% csrf_token %}
   <input type="hidden" name="amount" value="{{ orden.precioTotal }}">

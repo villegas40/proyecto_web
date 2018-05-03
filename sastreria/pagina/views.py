@@ -244,7 +244,7 @@ def mostrarpedidos(request,pk=None):
     else:
         user =request.user
 
-    return render(request,'pagina/mostrarpedidos.html',{'list':Purchase.objects.all().filter(purchaser=user)})
+    return render(request,'pagina/mostrarpedidos.html',{'list':Orders.objects.all().filter(purchaser=user,status="PAGADO")})
 
 
 @login_required
@@ -254,7 +254,7 @@ def citasdescripcion(request,id):
 
 @login_required
 def pedidosdescripcion(request,id):
-    resource = get_object_or_404(Purchase,pk=id)
+    resource = get_object_or_404(Orders,pk=id)
     return render(request,'pagina/pedidosdescripcion.html',{'resource':resource})
 
 
