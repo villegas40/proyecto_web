@@ -180,7 +180,10 @@ def pagoCompletado(request,pk=None):
         orders.nombre_producto.add(Product.objects.get(id=item.product.id))
     #orders.save()
     '''
-    return render(request, 'pagina/pago.html',{'resource':Cart(request.session)})
+
+    print(orders.id)
+    rorders = get_object_or_404(Orders,pk=orders.id)
+    return render(request, 'pagina/pago.html',{'resource':Cart(request.session),'orden':rorders,'paypal_url':settings.PAYPAL_URL,'paypal_email':settings.PAYPAL_EMAIL,'paypal_return_url':settings.PAYPAL_RETURN_URL})
 
 
 '''Checar despues
