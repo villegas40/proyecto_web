@@ -145,16 +145,17 @@ def remove(request):
     #return HttpResponse("Removed")
     return render(request, 'pagina/eliminar-carrito.html', {'product':product})
 
-def pagoCompletado(request,pricet,pricetd,commit=True):
+def pagoCompletado(request,pk=None):
     cart = Cart(request.session)
-    dec = Decimal(pricet)
-    dec1 = cart.total #Se hace asi , no cart.total()
+    #dec = Decimal(pricet)
+    dec = Decimal(cart.total) #Se hace asi , no cart.total()
     #print(dec1)
-
-    orders = Orders()
-
-    for item in cart.items:
-        orders.nombre_producto.add(Product.objects.get(id=item.product.id))
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    #orders = Orders()
+    print("HOLAA")
         #for xd in Product:
         #product2 = Product.objects.all()
     #    prdct = Product.objects.filter(id = item.product.id)
@@ -166,12 +167,19 @@ def pagoCompletado(request,pricet,pricetd,commit=True):
         #    print(item.product.id)
 
     #        orders.nombre_producto.add(prdct)
-
-    orders.cantitad = item.quantity
+    orders = Orders.objects.create(precioTotal=dec,purchaser=user,tx="1",status="NOPAGADO")
+    for item in cart.items:
+        orders.nombre_producto.add(Product.objects.get(id=item.product.id))
+        '''
     orders.precioTotal = dec
-    if commit:
-        orders.save()
-
+    orders.purchaser = user
+    orders.tx = "test"
+    orders.status = "SINPAGAR"
+    for item in cart.items:
+        print ("HOLA QUE TAL SOY UN PRINT")
+        orders.nombre_producto.add(Product.objects.get(id=item.product.id))
+    #orders.save()
+    '''
     return render(request, 'pagina/pago.html',{'resource':Cart(request.session)})
 
 

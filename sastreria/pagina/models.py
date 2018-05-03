@@ -66,8 +66,11 @@ class Citas(models.Model):
 
 class Orders(models.Model):
     nombre_producto = models.ManyToManyField(Product,blank=True,default=1)
-    cantitad = models.IntegerField()
     precioTotal = models.DecimalField(max_digits=6,decimal_places=2)
+    Purchase_at = models.DateTimeField(auto_now_add=True,null=True)
+    purchaser = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
+    tx = models.CharField(max_length=250,default="1")
+    status = models.CharField(max_length=20,default="SINPAGAR")
 
 class Purchase(models.Model):
     resource = models.ForeignKey(Orders,default=1,on_delete=models.CASCADE)
