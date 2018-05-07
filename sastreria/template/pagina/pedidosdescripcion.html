@@ -1,13 +1,28 @@
+
 {% extends "base.html" %}
 {% block title %} Pedido  {% endblock %}
 {% block content %}
-Fecha del pedido: <b>{{resource.Purchase_at}}</b>
-<p>Contenido :</P>
+<div class= "container">
+<p></p>
+<p>Fecha del pedido: <b>{{resource.Purchase_at}}</b></p>
+<h2 class="centered">Contenido </h2>
+<p>
+  <table>
+    <thead>
+      <tr>
+          <th>Nombre producto</th>
+          <th>Precio</th>
+      </tr>
+      </thead>
+      <tbody>
   {% for item in resource.nombre_producto.all %}
-  <li>{{item.nombre_producto}} - Precio : ${{item.precio}}</li>
+  <tr><td>{{item.nombre_producto}}</td><td>${{item.precio}}</td></tr>
 
   {% endfor %}
+</tbody>
+</table></p>
 <p>Precio total: ${{resource.precioTotal}}</p>
+</div>
 <p><a href="/home/">Clic para regresar al inicio</a></p>
 
 {% endblock %}
