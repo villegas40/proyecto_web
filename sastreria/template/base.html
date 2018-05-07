@@ -2,32 +2,33 @@
 {% get_cart as cart %}
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type = 'text/css' href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type = 'text/css' href="{% static 'css/centrar.css' %}">
+     <title>Sastrería Beltrán</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <scripts type="text/javascript" src = "{% static 'js/bootstrap.min.js'%}">
-</script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+    <script src="{% static 'js/init.js' %}">
+    </script>
     <title>{% block title %}Base {% endblock %}</title>
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Sastrería Beltran</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="black lighten-1" role="navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
-    <ul class="navbar-nav mr-auto">
+  <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><img src="{% static 'fonts/logo.png' %}" alt="" class="img-responsive"/></a>
+        {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
+    <ul class="right hide-on-med-and-down">
       <li class="nav-item active">
-        <a class="nav-link" href="/home/"> Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
       </li>
       <!--
       <li class="nav-item dropdown">
@@ -44,13 +45,13 @@
     -->
 
       <li class="nav-item">
-        <a class="nav-link" href="/profile">Perfil</a>
+        <a class="nav-link" href="/profile">Profile</a>
       </li>
       <li class= "nav-item">
         <a class="nav-link" href="/citas/{{user.id}}/">Citas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Cerrar Sesión</a>
+        <a class="nav-link" href="/logout">Logout</a>
       </li>
 
       <li class="nav-item">
@@ -66,10 +67,10 @@
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
     <ul class= "navbar-nav ml-auto">
       <li class="nav-item nav-left" >
-        <a class="nav-link" href="/login">Iniciar Sesión</a>
+        <a class="nav-link" href="/login">Login</a>
       </li>
       <li class = "nav-item">
-        <a class = "nav-link" href="/register"> Registrarse </a>
+        <a class = "nav-link" href="/register"> Registers </a>
       </li>
     </ul>
     {% endif %}
@@ -84,7 +85,6 @@
 
 <!--
 <nav class="navbar navbar-expand-sm bg-light">
-
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#">Link 1</a>
@@ -96,15 +96,101 @@
       <a class="nav-link" href="#">Link 3</a>
     </li>
   </ul>
-
 </nav>
 -->
-    {% block content %}
 
-    {% endblock %}
+ <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center black-text">Bienvenido a Sastrería Beltrán</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Brindamos el mejor servicio de Sastrería en la Ciudad de Tijuana</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light black">Registrate</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
 
 
+  <div class="container">
+    <div class="section">
 
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Nuestro sericio es rapido</h5>
+
+            <p class="light">Tenemos la capacidad de darte tu pedido lo mas pronto posible para que luzcas excelente en el evento que deseas estar.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Servicio al Cliente</h5>
+
+            <p class="light">Nuestra plataforma te brinda la funcion de poder contactarnos en caso de que quieras saber sobre tu pedido, cita, o bien brindarte informacion acerca de los servicios que ofrecemos.</p>
+          </div>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Registrate para un mejor servicio</h5>
+
+            <p class="light">Nuestra plataforma ya cuenta con registro de usuario, para brindarte un mejor servicio en tus compras, rentas, citas o bien informacion de nuestro catalogo.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer black">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="light-blue-text">Un poco de nosotros.</h5>
+          <p class="light-blue-text text-lighten-4">En resumen somos una compañia potencia en el area de Tijuana que podemo brindar un excelente servicio en los pedidos de sastreria y en su entrega correcta.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by Purple Team<a class="white-text text-lighten-3" </a>
+      </div>
+    </div>
+  </footer>
   </body>
-  <footer>Siguenos en nuesto Facebook</footer>
 </html>
