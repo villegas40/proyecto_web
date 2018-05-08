@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', auth_views.login, {'template_name': 'pagina/login.html'}, name = 'login'),
     path('logout/', auth_views.logout, {'template_name':'pagina/logout.html'}, name='logout'),
+    path('catalogo/',views.catalogo,name='catalogo'),
     re_path('home/', views.home, name = 'home_view'),
     path('register/', views.signup_user_view, name = 'register_view'),
     path('profile/', views.view_profile, name = "profile_view"),
