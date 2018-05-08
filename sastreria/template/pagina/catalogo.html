@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="container-fluid">
+
+  <p>¡Checa nuestros nuestros prouctos!</p>
+  <div class="row">
+    <div class="col-sm-3">
+    <ul id='categories'>
+      <li {% if categoria == "todo" %} >
+        {% else %}><a href="{{BASE_URL}}{% if filtrado != 'mostrar' %}?filtrado={{filtrado}}{% endif %}">
+        {% endif %}todo</a>
+      </li>
+      <li {% if categoria == "renta"%} >
+        {% else %}> <a href="{{BASE_URL}}?categoria=renta{% if filtrado != 'mostrar' %}&filtrado={{filtrado}}{% endif %}">
+        {% endif %} renta </a>
+      </li>
+      <li {% if categoria == "venta" %} class="current">
+        {% else %}> <a href="{{BASE_URL}}?categoria=venta{% if filtrado != 'mostrar' %}&filtrado={{filtrado}}{% endif %}">
+        {% endif %} venta </a>
+      </li>
+    </ul>
+    </div>
+    <div class="col-sm-3">
+    <ul id = "filtrados">
+      <li {% if filtrado == "muestra" %} >
+        {% else %}><a href="{{BASE_URL}}{%if categoria != 'todo'%}?categoria={{categoria}}{%endif%}">
+        {%endif%}todo</a>
+      </li>
+      <li {% if filtrado == "nuevo" %} >
+    		{% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=nuevo">
+    		{% endif %}nuevo</a>
+    	</li>
+      <li {% if filtrado == "barato" %} >
+        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=barato">
+        {% endif %}barato</a>
+      </li>
+      <li {% if filtrado == "caro" %} >
+        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=caro">
+        {% endif %}caro</a>
+      </li>
+
+    </ul>
+    </div>
+    </div>
+    <div id="listing" class="row">
+      {% for item in item_list %}
+      <div class="col-sm-3" style="background-color:white;">
+        <p> <a href="/articulo/info/?id={{item.id}}"> <img src="{{ item.image_url }}" width="200" height="200"></a></p>
+
+        <p>{{ item.nombre_producto }}</p>
+        <p>Precio: ${{ item.precio }} MNX</p>
+        <input class="btn btn-info" type="button"
+        onclick="window.location.href='/carrito/agregar/?id={{item.id}}'"
+        value="¡Agregar al Carrito!">
+      </input>
+      </div>
+      {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}

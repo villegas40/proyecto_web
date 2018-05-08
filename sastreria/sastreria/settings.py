@@ -139,7 +139,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # default django
 # Para que fucnione el Carrito
 CART_PRODUCT_MODEL = 'pagina.models.Product'
 
-BASE_URL = '/home/'
+BASE_URL = '/catalogo/'
 
 
 #paypal

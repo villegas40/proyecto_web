@@ -9,15 +9,10 @@
      <title>Sastrería Beltrán</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="{% static 'js/materialize.js' %}"></script>
-    <script src="{% static 'js/init.js' %}">
-    </script>
+
+
     <title>{% block title %}Base {% endblock %}</title>
   </head>
   <body>
@@ -28,7 +23,7 @@
         {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
     <ul class="right hide-on-med-and-down">
       <li class="nav-item active">
-        <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home/">Home <span class="sr-only"></span></a>
       </li>
       <!--
       <li class="nav-item dropdown">
@@ -44,14 +39,15 @@
       </li>
     -->
 
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/catalogo">Catalogo</a>
+    </li>
       <li class= "nav-item">
         <a class="nav-link" href="/citas/{{user.id}}/">Citas</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/sucursales/">Sucursales</a>
       </li>
 
       <li class="nav-item">
@@ -59,9 +55,15 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/sucursales/">Sucursales</a>
+        <a class="nav-link" href="/profile">Profile</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+
     </ul>
+
 
     </ul>
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
@@ -99,63 +101,12 @@
 </nav>
 -->
 
- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center black-text">Bienvenido a Sastrería Beltrán</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Brindamos el mejor servicio de Sastrería en la Ciudad de Tijuana</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light black">Registrate</a>
-      </div>
-      <br><br>
-
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Nuestro sericio es rapido</h5>
-
-            <p class="light">Tenemos la capacidad de darte tu pedido lo mas pronto posible para que luzcas excelente en el evento que deseas estar.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Servicio al Cliente</h5>
-
-            <p class="light">Nuestra plataforma te brinda la funcion de poder contactarnos en caso de que quieras saber sobre tu pedido, cita, o bien brindarte informacion acerca de los servicios que ofrecemos.</p>
-          </div>
-        </div>
         {% block content %}
 
         {% endblock %}
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Registrate para un mejor servicio</h5>
 
-            <p class="light">Nuestra plataforma ya cuenta con registro de usuario, para brindarte un mejor servicio en tus compras, rentas, citas o bien informacion de nuestro catalogo.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
 
   <footer class="page-footer black">
     <div class="container">
