@@ -9,7 +9,7 @@
 
     {% for field in form %}
     <p>
-      {{ field.label_tag }}<br>
+      {{ field.label_tag }} <br>
       {{ field }}
       {% if field.help_text %}
         <small style="color: grey">{{ field.help_text }}</small>
@@ -20,7 +20,18 @@
     </p>
     {% endfor %}
 
-    <button type="submit" class = "btn btn-secondary" name="singup">Registrarse</button>
+    <button type="submit" class="btn waves-effect waves-light" name="Registrar">Registrarse</button>
+    <script>
+      $(document).ready(function(){
+        $('label[for="id_username"]').html('Nombre de usuario: ');
+        $('label[for="id_user_name"]').html('Nombre: ');
+        $('label[for="id_user_last"]').html('Apellido: ');
+        $('label[for="id_birth_date"]').html('Fecha de Nacimiento: ');
+        $('label[for="id_email"]').html('Correo electronico: ');
+        $('label[for="id_password1"]').html('Contraseña: ');
+        $('label[for="id_password2"]').html('Confirmar contraseña: ');
+    });
+    </script>
   </form>
   <br>
 </div>

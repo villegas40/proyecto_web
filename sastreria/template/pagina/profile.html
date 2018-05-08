@@ -2,54 +2,54 @@
 {% block title %} Perfil {% endblock %}
 
 {% block content %}
-  <h2>Perfil</h2>
-  <div class="container-fluid">
+  <div class="container">
+    <h2>Perfil</h2>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Nombre de usuario:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p>{{user}}</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Nombre:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p>{{user.first_name}}</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Apellidos</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p>{{user.last_name}}</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Fecha de Nacimiento:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p>{{user.perfil.birth_date}}</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Correo Electronico:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p>{{user.email}}</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Editar Perfil:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p><input class="btn btn-info" type="button"
         onclick="window.location.href='/edit_profile/'"
         value="Editar">
@@ -58,19 +58,19 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Ver citas realizadas: </p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p><input class="btn btn-info" type="button" onclick="window.location.href='/desplegarcitas/'" value="Citas"></p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">
+      <div class="col s6" style="background-color:lavender;">
         <p>Historial de Pedidos:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s6">
         <p><input class="btn btn-info" type="button" onclick="window.location.href='/mostrarpedidos/'" value="Pedidos"></p>
       </div>
     </div>

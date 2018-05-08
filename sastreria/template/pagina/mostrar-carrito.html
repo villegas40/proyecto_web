@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block title %} Carrito {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     <h1>Carrito</h1>
     <div class="row">
-      <div class="col-sm-3" style="background-color:lavender;">Articulo</div>
-      <div class="col-sm-3" style="background-color:lavender;">Precio</div>
-      <div class="col-sm-3" style="background-color:lavender;">Cantidad</div>
+      <div class="col s3" style="background-color:lavender;">Articulo</div>
+      <div class="col s3" style="background-color:lavender;">Precio</div>
+      <div class="col s3" style="background-color:lavender;">Cantidad</div>
+      <div class="col s3" style="background-color:lavender;">Opciones</div>
     </div>
 
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col s3">
         {% for item in cart.items %}
           <p>{{item.product.nombre_producto}}</p>
 
         {% endfor %}
-        <p class="right"> Total: </p>
+        <p class="center">Total:</p>
       </div>
-      <div class="col-sm-3">
+      <div class="col s3">
         {% for item in cart.items %}
           <p>{{item.price}}</p>
         {% endfor %}
@@ -28,41 +29,34 @@
 
       </div>
 
-      <div class="col-sm-3">
+      <div class="col s3">
         {% for item in cart.items %}
           <p>{{item.quantity}}</p>
         {% endfor %}
         {{cart.count}}
       </div>
-      <div class="col-sm-3">
+      <div class="col s3">
         {% for item in cart.items %}
-          <p>
-            <input class="btn btn-danger btn-sm" type="button"
+          <p class="center">
+            <input class="waves-effect waves-light btn-small" type="button"
             onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
             value="Eliminar">
-            </input>
-
-            <div class="dropdown">
-              <button id="dropMenu" type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"> Eliminar</button>
-              <div class="dropdown-menu" aria-labelledby="dropMenu">
-                <a class="dropdown-item" href="/carrito/mostrar/?id={{product.id}}">Eliminar Uno</a>
-                <a class="dropdown-item" href="/carrito/remover/?id={{product.id}}">Elimiar Todo</a>
-              </div>
-            </div>
-
+          </input>
             </p>
         {% endfor %}
       </div>
-    </div>
-</div>
-<p>
-  <input class="btn btn-info" type="button"
-  onclick="window.location.href='/pago/'"
-  value="¡Pagar!">
-  </input>
 
-</p>
+    </div>
+
+    <p class="center">
+      <input class="btn btn-info" type="button"
+      onclick="window.location.href='/pago/'"
+      value="¡Pagar!">
+      </input>
+    </p>
+    <br>
+</div>
+
 
 
 {% endblock %}

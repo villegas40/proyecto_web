@@ -7,13 +7,14 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>Sastrería Beltrán</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{% static 'css/centrar.css' %}" type="text/css" rel="stylesheet"/>
     <script src="{% static 'js/materialize.js' %}"></script>
 
 
-    <title>{% block title %}Base {% endblock %}</title>
+    <title>{% block title %} Base {% endblock %}</title>
   </head>
   <body>
 <nav class="black lighten-1" role="navigation">
@@ -25,19 +26,6 @@
       <li class="nav-item active">
         <a class="nav-link" href="/home/">Home <span class="sr-only"></span></a>
       </li>
-      <!--
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    -->
 
     <li class="nav-item">
       <a class="nav-link" href="/catalogo">Catalogo</a>
@@ -55,11 +43,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
+        <a class="nav-link" href="/profile">Perfil</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Cerrar Sesión</a>
       </li>
 
     </ul>
@@ -69,37 +57,16 @@
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
     <ul class= "navbar-nav ml-auto">
       <li class="nav-item nav-left" >
-        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/login">Entrar</a>
       </li>
       <li class = "nav-item">
-        <a class = "nav-link" href="/register"> Registers </a>
+        <a class = "nav-link" href="/register"> Registrarse </a>
       </li>
     </ul>
     {% endif %}
-    <!--
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-     -->
   </div>
 </nav>
 
-<!--
-<nav class="navbar navbar-expand-sm bg-light">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-  </ul>
-</nav>
--->
 
     </div>
   </nav>

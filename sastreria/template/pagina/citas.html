@@ -3,18 +3,32 @@
 {% block content %}
 
 <div class="container">
-
+  <h3>Agende su cita con nosotros</h3>
   <p>Horas laborales: 8:00AM - 6:00PM </p>
-  <p>Dias laborales Lunes-Sabado </p>
-<form method="POST">
-{% csrf_token %}
-{{form.as_p}}
-<input type="submit" name="Register" value="Registrar">
-<input type="reset" name="Cancel" value="Borrar">
-</form>
-<p><a href="/home/">Clic para regresar al inicio</a></p>
+  <p>Días laborales de Lunes a Sábado </p>
+  <form method="POST">
+  {% csrf_token %}
+  {{form.as_p}}
+
+  <!--<input type="submit" name="Register" value="Registrar">-->
+  <button type="submit" class="btn waves-effect waves-light" name="Registrar"> Registrar
+    <i class="material-icons right">event</i>
+  </button>
+  <!--<input type="reset" name="Cancel" value="Borrar">-->
+  <button type="submit" class="btn waves-effect waves-light" name="Borrar"> Borrar
+    <i class="material-icons right">delete</i>
+  </button>
+  </form>
 
 </div>
+<br>
+<script>
+  $(document).ready(function(){
+    $('label[for="id_citahora"]').html('Seleccione hora: ');
+    $('label[for="id_citafecha_month"]').html('Seleccione una fecha: ');
+    $('label[for="id_lugarcita"]').html('Seleccione en que sucursal: ');
+});
+</script>
 
 {% endblock %}
 
