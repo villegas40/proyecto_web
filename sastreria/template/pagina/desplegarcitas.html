@@ -2,13 +2,37 @@
 {% block title %} Paypal {% endblock %}
 
 {% block content %}
-<p>Citas realizadas</p>
+<div class="container">
+<H4 >Citas realizadas</H4>
+<p>Para mayor informacion hacer clic sobre la fecha deseada</p>
 
-{% for item in list %}
-<li><a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}} - {{item.LugarCita}}</a></li>
-{% endfor %}
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Fecha de la cita</th>
+      <th>Hora de la cita</th>
+      <th>Lugar de la cita</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in list %}
+    <tr>
+      <td>
+        <a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}}</a>
+      </td>
+      <td>
+        {{item.get_CitaHora_display}}
+      </td>
+      <td>
+        {{item.LugarCita}}
+      </td>
 
-<p>Clic a la cita para mayor informacion </p>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
+
+</div>
 
 {% endblock %}
