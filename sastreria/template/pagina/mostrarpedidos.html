@@ -2,13 +2,37 @@
 {% block title %} Pedidos {% endblock %}
 
 {% block content %}
-<p>Pedidos  realizadas</p>
 
-{% for item in list %}
-<li><a href="/Pedidosdescripcion/{{ item.id }}/">Numero de pedido: {{ item.id}}  Fecha de compra: {{item.Purchase_at}} - Precio Total: {{item.precioTotal}}</a></li>
-{% endfor %}
+<div class="container">
+<h3>Pedidos  realizados</h3>
+<p>Clic al pedido para mayor informacion</p>
 
-<p>Clic al pedido para mayor informacion </p>
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>Numero de pedido</th>
+      <th>Fecha de compra</th>
+      <th>Precio Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in list %}
+    <tr>
+      <td>
+        <a href="/Pedidosdescripcion/{{ item.id }}/">{{ item.id}}</a>
+      </td>
+      <td>
+        {{item.Purchase_at}}
+      </td>
+      <td>
+        {{item.precioTotal}}
+      </td>
 
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br></br>
+</div>
 
 {% endblock %}
