@@ -16,52 +16,13 @@ from decimal import Decimal
 
 # Create your views here.
 def home(request):
-    if 'categoria' in request.GET:
-        categoria = request.GET['categoria']
-    else:
-        categoria = 'todo'
-
-    # Pensar como hacer el filtrado de precios
-
-    if 'filtrado' in request.GET:
-        filtrado = request.GET['filtrado']
-    else:
-        filtrado = 'mostrar'
-
-    if categoria == 'todo':
-        item_list = Product.objects.all()
-    else:
-        item_list = Product.objects.filter(categoria=categoria)
-
-    item_list = [item for item in item_list]
-
-    if filtrado=='nuevo':
-        item_list.sort(key=(lambda item: item.fecha_alta))
-    elif filtrado=='barato':
-        item_list.sort(key=(lambda item: item.precio), reverse=False)
-    elif filtrado=='caro':
-        item_list.sort(key=(lambda item: item.precio), reverse=True)
-    elif filtrado=='mostrar':
-        item_list.sort(key=(lambda item: item.nombre_producto))
-
-    product = Product.objects.all()
-    context = {
-    'BASE_URL': BASE_URL,
-    'categoria':categoria,
-    'filtrado':filtrado,
-    'item_list':item_list,
-    'product':product,
-    }
-
-    return render(request, 'pagina/index2.html', context)
+    return render(request, 'pagina/index2.html')
 
 def catalogo(request):
     if 'categoria' in request.GET:
         categoria = request.GET['categoria']
     else:
         categoria = 'todo'
-
-    # Pensar como hacer el filtrado de precios
 
     if 'filtrado' in request.GET:
         filtrado = request.GET['filtrado']
