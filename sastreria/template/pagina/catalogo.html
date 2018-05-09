@@ -2,11 +2,11 @@
 
 {% block title %} Home {% endblock %}
 {% block content %}
-<div class="container-fluid">
-
+<div class="container">
+  <h3>Cátalogo</h3>
   <p>¡Checa nuestros nuestros prouctos!</p>
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col s4">
     <ul id='categories'>
       <li {% if categoria == "todo" %} >
         {% else %}><a href="{{BASE_URL}}{% if filtrado != 'mostrar' %}?filtrado={{filtrado}}{% endif %}">
@@ -22,7 +22,7 @@
       </li>
     </ul>
     </div>
-    <div class="col-sm-3">
+    <div class="col s4">
     <ul id = "filtrados">
       <li {% if filtrado == "muestra" %} >
         {% else %}><a href="{{BASE_URL}}{%if categoria != 'todo'%}?categoria={{categoria}}{%endif%}">
@@ -37,7 +37,7 @@
         {% endif %}barato</a>
       </li>
       <li {% if filtrado == "caro" %} >
-        {% else %}><a href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=caro">
+        {% else %}><a  href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=caro">
         {% endif %}caro</a>
       </li>
 
@@ -46,9 +46,8 @@
     </div>
     <div id="listing" class="row">
       {% for item in item_list %}
-      <div class="col-sm-3" style="background-color:white;">
+      <div class="col s4" style="background-color:white;">
         <p> <a href="/articulo/info/?id={{item.id}}"> <img src="{{ item.image_url }}" width="200" height="200"></a></p>
-
         <p>{{ item.nombre_producto }}</p>
         <p>Precio: ${{ item.precio }} MNX</p>
         <input class="btn btn-info" type="button"
