@@ -10,22 +10,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>-->
     <link href="{% static 'css/centrar.css' %}" type="text/css" rel="stylesheet"/>
     <script src="{% static 'js/materialize.js' %}"></script>
-
+    <link rel="icon" href="/static/media/favicon.icon">
 
     <title>{% block title %} Base {% endblock %}</title>
   </head>
   <body>
-<nav class="black lighten-1" role="navigation">
+
+<nav class="grey " role="navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><img src="{% static 'fonts/logo.png' %}" alt="" class="img-responsive"/></a>
         {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
     <ul class="right hide-on-med-and-down">
+
+
+      <li class="nav-item">
+        <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
+      </li>
+
       <li class="nav-item active">
         <a class="nav-link" href="/home/">Home <span class="sr-only"></span></a>
       </li>
+
 
     <li class="nav-item">
       <a class="nav-link" href="/catalogo">Catalogo</a>
@@ -56,6 +66,9 @@
     </ul>
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
     <ul class= "navbar-nav ml-auto">
+      <li class="nav-item">
+        <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
+      </li>
       <li class="nav-item nav-left" >
         <a class="nav-link" href="/login">Entrar</a>
       </li>
@@ -73,41 +86,36 @@
         {% block content %}
 
         {% endblock %}
-
-
   <footer class="page-footer black">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="light-blue-text">Un poco de nosotros.</h5>
+          <h5 class="light-blue-text">Un poco de nosotros</h5>
           <p class="light-blue-text text-lighten-4">En resumen somos una compañia potencia en el area de Tijuana que podemo brindar un excelente servicio en los pedidos de sastreria y en su entrega correcta.</p>
 
 
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
+          <h5 class="white-text">Telefonos</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text">(664)621-7484 </li>
+            <li><a class="white-text">(664)626-2092 </li>
           </ul>
         </div>
         <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
+          <h5 class="white-text">Redes Sociales</h5>
           <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
+            <li><a class="white-text" href="https://www.facebook.com/sastreriabeltran">Facebook</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
-      <div class="container">
-      Made by Purple Team<a class="white-text text-lighten-3" </a>
+      <div class="row">
+      Made by Purple Team <a class="white-text text-lighten-3" </a>
       </div>
+      <div class="row" >
+        Sastrería Beltran , Tijuana B.C. Mexico<a class="white-text text-lighten-3"</a>
     </div>
   </footer>
   </body>
