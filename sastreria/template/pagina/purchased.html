@@ -2,22 +2,43 @@
 {% block title %} Pago completo {% endblock %}
 
 {% block content %}
-
-<p>
+<div class="container">
+<br></br>
+<h2 class="centered">Compra exitosa del pedido #{{resource.id}}</h2>
+ <p>Fecha del pedido: <b>{{resource.Purchase_at}}</b></p>
  <!--
  Agregar desgloce de cosas compradas aqui
  -->
-	Haz comprado exitosamente lo siguiente:
-	<p>Numero de orden: {{resource.id}}</p>
-	<p>Contenido :</P>
-	  {% for item in resource.nombre_producto.all %}
-	  <li>{{item.nombre_producto}} - Precio : ${{item.precio}}</li>
+	<p>Contenido del pedido:</p>
+	
+	<table>
 
-	  {% endfor %}
-	<p>Precio total: ${{resource.precioTotal}}</p>
-<p><a href="/home/">Clic para regresar al inicio</a></p>
+    <thead>
+      <tr>
+          <th>Producto</th>
+          <th>Nombre del producto</th>
+          <th>Precio</th>
+      </tr>
+      </thead>
+      <tbody>
+ 		 {% for item in resource.nombre_producto.all %}
+  		<tr>
+  			<td>
+  				<img src="{{ item.image_url }}" width="100" height="100">
+  			</td>
+  			<td>
+  				{{item.nombre_producto}}
+  			</td>
+  			<td>
+  				${{item.precio}}
+  			</td>
+  		</tr>
 
-</p>
-
+  		{% endfor %}
+	   </tbody>
+	</table>
+	<p class="right">Total pagado: ${{resource.precioTotal}}</p>
+	<br></br>
+</div>
 
 {% endblock %}

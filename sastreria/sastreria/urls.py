@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views # Para usar login y logout
 from pagina import views
-from pagina.views import modulocitas,desplegarcitas,citasdescripcion,sucursalesv,mostrarpedidos,pedidosdescripcion
+from pagina.views import modulocitas,citaexito,desplegarcitas,citasdescripcion,sucursalesv,mostrarpedidos,pedidosdescripcion
 from pagos.views import purchased
 # Importar las vistas genericas ofrecidas por django para resetear contraseña
 from django.contrib.auth.views import (
@@ -36,7 +36,7 @@ urlpatterns = [
     path('register/', views.signup_user_view, name = 'register_view'),
     path('profile/', views.view_profile, name = "profile_view"),
     path('edit_profile/', views.edit_profile, name = 'edit_profile_view'),
-    path('change_password/', views.change_password, name = 'change_password_view'),
+    path('password/', views.change_password, name = 'change_password_view'),
     re_path(r'^password_reset/$', password_reset, {'template_name':'reset/password_reset_form.html',
     'email_template_name':'reset/password_reset_email.html'}, name = 'password_reset'),
     re_path(r'^password_reset_done/$', password_reset_done, {'template_name': 'reset/password_reset_done.html'},
@@ -49,6 +49,7 @@ urlpatterns = [
     re_path(r'^carrito/agregar/$',views.add, name='agregar_carrito_view'),
     re_path(r'^carrito/remover/$',views.remove, name='agregar_carrito_view'),
     re_path(r'citas/(?P<id>\d+)/$',modulocitas,name='modulocitas'),
+    re_path(r'citaexito/(?P<id>\d+)/$',citaexito,name='citaexito'),
     re_path(r'citasdescripcion/(?P<id>\d+)/$',citasdescripcion,name='modulocitas'),
     re_path(r'Pedidosdescripcion/(?P<id>\d+)/$',pedidosdescripcion,name='pedidosdescripcion'),
     path('desplegarcitas/',desplegarcitas),

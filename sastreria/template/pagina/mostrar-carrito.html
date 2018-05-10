@@ -3,50 +3,38 @@
 {% block content %}
 <div class="container">
     <h1>Carrito</h1>
-    <div class="row">
-      <div class="col s3" style="background-color:lavender;">Articulo</div>
-      <div class="col s3" style="background-color:lavender;">Precio</div>
-      <div class="col s3" style="background-color:lavender;">Cantidad</div>
-      <div class="col s3" style="background-color:lavender;">Opciones</div>
-    </div>
 
-    <div class="row">
-      <div class="col s3">
+    <table class="responsive-table centered striped">
+      <thead>
+        <tr>
+          <th>Artículo</th>
+          <th>Precio</th>
+          <th>Cantitad</th>
+          <th>Eliminar del Carrito</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for item in cart.items %}
-          <p>{{item.product.nombre_producto}}</p>
+        <tr>
 
+          <td>{{item.product.nombre_producto}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.quantity}}</td>
+          <td><input class="waves-effect waves-light btn-small" type="button"
+          onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
+          value="Eliminar">
+          </input></td>
+        </tr>
         {% endfor %}
-        <p class="center">Total:</p>
-      </div>
-      <div class="col s3">
-        {% for item in cart.items %}
-          <p>{{item.price}}</p>
-        {% endfor %}
 
-        <p>
-          {{ cart.total }}
-        </p>
+        <tr>
+          <td> <p class="right">Total</p></td>
+          <td>{{cart.total}}</td>
+          <td>{{cart.count}}</td>
+        </tr>
 
-      </div>
-
-      <div class="col s3">
-        {% for item in cart.items %}
-          <p>{{item.quantity}}</p>
-        {% endfor %}
-        {{cart.count}}
-      </div>
-      <div class="col s3">
-        {% for item in cart.items %}
-          <p class="center">
-            <input class="waves-effect waves-light btn-small" type="button"
-            onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
-            value="Eliminar">
-          </input>
-            </p>
-        {% endfor %}
-      </div>
-
-    </div>
+      </tbody>
+    </table>
     {%if cart.count == 0%}
 
     {%else%}
