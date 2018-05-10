@@ -22,16 +22,17 @@
 
 <nav class="grey " role="navigation">
     <span class="navbar-toggler-icon"></span>
+    <!--<a class="navbar-brand" href="/home"><img class="responsive-img" src="/static/media/logo1.png" width="305" height="200"></a>-->
   </button>
-  <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><img src="{% static 'fonts/logo.png' %}" alt="" class="img-responsive"/></a>
+  <div class="nav-wrapper container"><a id="logo-container" href="/home/" class="brand-logo"><img src="/static/media/logo1.png" alt="" class="img-responsive"/></a>
         {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
     <ul class="right hide-on-med-and-down">
 
-
+      <!--
       <li class="nav-item">
         <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
-      
       </li>
+    -->
 
       <li class="nav-item">
         <a class="nav-link" href="/home/">Home <span class="sr-only"></span></a>
@@ -66,10 +67,11 @@
 
     </ul>
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
-    <ul class= "navbar-nav ml-auto">
-      <li class="nav-item">
+    <ul class= "right hide-on-med-and-down">
+      <!--<li class="nav-item">
         <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
-      </li>
+      </li>-->
+
       <li class="nav-item">
       <a class="nav-link" href="/home/">Home</a>
       </li>
