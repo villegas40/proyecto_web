@@ -47,6 +47,38 @@
       </div>
 
     </div>
+
+    <table class="responsive-table centered striped">
+      <thead>
+        <tr>
+          <th>Artículo</th>
+          <th>Precio</th>
+          <th>Cantitad</th>
+          <th>Eliminar del Carrito</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+        <tr>
+
+          <td>{{item.product.nombre_producto}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.quantity}}</td>
+          <td><input class="waves-effect waves-light btn-small" type="button"
+          onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
+          value="Eliminar">
+          </input></td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+          <td> <p class="right">Total</p></td>
+          <td>{{cart.total}}</td>
+          <td>{{cart.count}}</td>
+        </tr>
+
+      </tbody>
+    </table>
     {%if cart.count == 0%}
 
     {%else%}

@@ -16,6 +16,28 @@
   <div class="row">
     <p>Total: {{cart.total}}</p>
   </div>
+
+  <table class="responsive-table centered striped">
+    <thead>
+      <tr>
+        <td> <p class="center">Artículos</p> </td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart.items %}
+      <tr>
+        <td><img src="{{item.product.image_url}}" alt="Producto" width="50" height="50"></td>
+        <td>{{ item.product.nombre_producto }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>Total a Pagar:</td>
+        <td>{{cart.total}}</td>
+      </tr>
+    </tbody>
+  </table>
+
   <div class="row">
     <p class="center">Metodo de pago:</p>
     <form action="{{ paypal_url }}" method="POST">
