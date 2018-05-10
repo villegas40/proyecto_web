@@ -22,71 +22,61 @@
 
 <nav class="grey " role="navigation">
     <span class="navbar-toggler-icon"></span>
-    <!--<a class="navbar-brand" href="/home"><img class="responsive-img" src="/static/media/logo1.png" width="305" height="200"></a>-->
+
   </button>
-  <div class="nav-wrapper container"><a id="logo-container" href="/home/" class="brand-logo"><img src="/static/media/logo1.png" alt="" class="img-responsive"/></a>
+  <div class="nav-wrapper">
+    <a id="logo-container" href="/home/" class="brand-logo"><img src="/static/media/logo1.png" alt="" class="img-responsive"/></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
         {% if user.is_authenticated %} <!-- Si el usuario se logea entonces muestra -->
     <ul class="right hide-on-med-and-down">
 
-      <!--
-      <li class="nav-item">
-        <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
-      </li>
-    -->
-
-      <li class="nav-item">
-        <a class="nav-link" href="/home/">Home <span class="sr-only"></span></a>
+      <li>
+        <a href="/home/">Home <span class="sr-only"></span></a>
       </li>
 
 
-    <li class="nav-item">
-      <a class="nav-link" href="/catalogo">Catalogo</a>
-    </li>
-      <li class= "nav-item">
-        <a class="nav-link" href="/citas/{{user.id}}/">Citas</a>
+      <li>
+        <a href="/catalogo">Catalogo</a>
+      </li>
+      <li>
+        <a href="/citas/{{user.id}}/">Citas</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/sucursales/">Sucursales</a>
+      <li>
+        <a href="/sucursales/">Sucursales</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/carrito/mostrar">Carrito</a>
+      <li>
+        <a href="/carrito/mostrar">Carrito</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Perfil</a>
+      <li>
+        <a href="/profile">Perfil</a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Cerrar Sesión</a>
+      <li>
+        <a href="/logout">Cerrar Sesión</a>
       </li>
-
-    </ul>
-
-
     </ul>
     {% else %} <!-- Si no, entonces solo mostrara login y logout -->
     <ul class= "right hide-on-med-and-down">
-      <!--<li class="nav-item">
-        <img class="responsive-img" src="/static/media/logo1.png" width="305" height="200">
-      </li>-->
 
-      <li class="nav-item">
+      <li>
       <a class="nav-link" href="/home/">Home</a>
       </li>
-      <li class="nav-item">
+      <li>
       <a class="nav-link" href="/catalogo">Catalogo</a>
       </li>
 
-      <li class="nav-item">
+      <li>
         <a class="nav-link" href="/sucursales/">Sucursales</a>
       </li>
-      <li class="nav-item nav-left" >
+      <li>
         <a class="nav-link" href="/login">Entrar</a>
       </li>
 
-      <li class = "nav-item">
+      <li>
         <a class = "nav-link" href="/register"> Registrarse </a>
       </li>
     </ul>
@@ -94,6 +84,24 @@
   </div>
 </nav>
 
+  <ul class="sidenav" id="mobile-demo">
+    {% if user.is_authenticated %}
+    <li><a href="/home/">Home</a></li>
+    <li><a href="/catalogo/">Catálogo</a></li>
+    <li><a href="/citas/{{user.id}}/">Citas</a></li>
+    <li><a href="/sucursales/">Sucursales</a></li>
+    <li><a href="/carrito/mostrar">Carrito</a></li>
+    <li><a href="/profile/">Perfil</a></li>
+    <li><a href="/logout/">Cerrar Sesión</a></li>
+
+    {% else %}
+    <li><a href="/home/">Home</a></li>
+    <li><a href="/catalogo/">Catálogo</a></li>
+    <li><a href="/login/">Entrar</a></li>
+    <li><a href="/register/">Registrarse</a></li>
+    <li><a href="/sucursales/">Sucursales</a></li>
+    {% endif %}
+  </ul>
 
     </div>
   </nav>
@@ -133,6 +141,11 @@
       <div class="row" >
         Sastrería Beltran , Tijuana B.C. Mexico<a class="white-text text-lighten-3"</a>
     </div>
+    <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      });
+    </script>
   </footer>
   </body>
 </html>
