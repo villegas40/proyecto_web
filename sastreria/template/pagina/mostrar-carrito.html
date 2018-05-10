@@ -47,13 +47,16 @@
       </div>
 
     </div>
+    {%if cart.count == 0%}
 
-    <p class="center">
-      <input class="btn btn-info" type="button"
-      onclick="window.location.href='/pago/'"
-      value="¡Pagar!">
-      </input>
-    </p>
+    {%else%}
+      <p class="center">
+        <input class="btn btn-info" type="button"
+        onclick="window.location.href='/pago/'"
+        value="¡Pagar!">
+        </input>
+      </p>
+    {%endif%}
     <br>
 </div>
 
