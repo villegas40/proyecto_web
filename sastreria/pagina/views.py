@@ -13,7 +13,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
 from django.conf import settings
 from decimal import Decimal
-
 # Create your views here.
 def home(request):
     return render(request, 'pagina/index2.html')
@@ -219,13 +218,20 @@ def modulocitas(request,id):
             p.LugarCita = form.cleaned_data["lugarcita"]
             p.usuario = user
             p.save()
-            #poner aqui una alerta chida
-            return HttpResponseRedirect("/home/")
+
+
+            return HttpResponseRedirect("/citaexito/"+str(p.id)+"/")
     else:
         form = citas()
     ctx = {"form":form}
 
     return render(request,'pagina/citas.html',ctx)
+@login_required
+def citaexito(request,id):
+    idn = int(id)
+    resource = get_object_or_404(Citas,pk=idn)
+    return render(request,'pagina/citaexito.html',{'resource':resource})
+
 @login_required
 def desplegarcitas(request,pk=None):
     if pk:
