@@ -4,26 +4,28 @@
 {% block content %}
 <div class= "container">
 <p></p>
+
+<h2 class="centered">Contenido del pedido #{{resource.id}}</h2>
 <p>Fecha del pedido: <b>{{resource.Purchase_at}}</b></p>
-<h2 class="centered">Contenido </h2>
-<p>
   <table>
 
     <thead>
       <tr>
-          <th>Nombre producto</th>
+          <th>Producto</th>
+          <th>Nombre del producto</th>
           <th>Precio</th>
       </tr>
       </thead>
       <tbody>
   {% for item in resource.nombre_producto.all %}
-  <tr><td>{{item.nombre_producto}}</td><td>${{item.precio}}</td></tr>
+  <tr><td><img src="{{ item.image_url }}" width="100" height="100"></td><td>{{item.nombre_producto}}</td><td>${{item.precio}}</td></tr>
 
   {% endfor %}
 </tbody>
-</table></p>
-<p>Precio total: ${{resource.precioTotal}}</p>
+</table>
+<p class="right">Precio total: ${{resource.precioTotal}}</p>
+<br></br>
 </div>
-<p>Agregar aqui boton de reporte chido despues</p>
 
+<button type="button" name="button">Boton de reportes Agregar</button>
 {% endblock %}
