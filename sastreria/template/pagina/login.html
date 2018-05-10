@@ -2,16 +2,18 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
+<div class="container">
   <form method="post">
     <blockquote class = "blockquote text-center">
       <h2>Iniciar Sesión</h2>
       {% csrf_token %}
       {{form.as_p}}
 
-      <button type="submit"  class = "btn btn-secondary">Login</button>
+      <button type="submit"  class = "red darken-4 btn btn-secondary">Login</button>
       <a href="/password_reset">
         Olvidé mi contaseña
       </a>
     </blockquote>
   </form>
+</div>
 {% endblock %}

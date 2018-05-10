@@ -2163,8 +2163,10 @@ html {
  */
 body {
   margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-
 /**
  * Add the correct display in IE 9-.
  */
@@ -2197,6 +2199,7 @@ figure,
 main {
   /* 1 */
   display: block;
+  flex: 1 0 auto;
 }
 
 /**
