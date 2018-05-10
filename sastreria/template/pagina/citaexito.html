@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Cita {% endblock %}
+{% block content %}
+<div class="container">
+<h4>Cita agendada exitosamente!</h4>
+Fecha de la cita: <b>{{resource.CitaFecha}}</b>
+<p>En la sucursal: <b>{{resource.LugarCita}}</b></p>
+<p>Hora de la cita: <b>{{resource.get_CitaHora_display}}</b></p>
+<p>Te esperamos con todo el entusiasmo del mundo!!!</p>
+</div>
+{% endblock %}
