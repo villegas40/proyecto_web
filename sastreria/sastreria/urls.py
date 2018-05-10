@@ -36,7 +36,7 @@ urlpatterns = [
     path('register/', views.signup_user_view, name = 'register_view'),
     path('profile/', views.view_profile, name = "profile_view"),
     path('edit_profile/', views.edit_profile, name = 'edit_profile_view'),
-    path('change_password/', views.change_password, name = 'change_password_view'),
+    path('password/', views.change_password, name = 'change_password_view'),
     re_path(r'^password_reset/$', password_reset, {'template_name':'reset/password_reset_form.html',
     'email_template_name':'reset/password_reset_email.html'}, name = 'password_reset'),
     re_path(r'^password_reset_done/$', password_reset_done, {'template_name': 'reset/password_reset_done.html'},
