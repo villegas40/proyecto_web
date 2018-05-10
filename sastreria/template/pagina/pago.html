@@ -2,30 +2,35 @@
 
 {% block title %} Home {% endblock %}
 {% block content %}
-<div class="container-fluid">
-  <h1>Confirmacion del pedido</h1>
+<div class="container">
+  <h3>Confirmación del pedido</h3>
   <div class="row">
     {% for item in resource.items %}
-    <div class="col-sm-3" style="background-color:white;">
+    <div class="col" style="background-color:white;">
       <p>{{ item.product.nombre_producto }}</p>
+      <img src="{{item.product.image_url}}" alt="Producto" width="50" height="50">
       <p>Precio: ${{ item.product.precio }} MXN</p></p>
     </div>
     {% endfor %}
-    <p>Precio Total: {{cart.total}}</p>
   </div>
+  <div class="row">
+    <p>Total: {{cart.total}}</p>
+  </div>
+  <div class="row">
+    <p class="center">Metodo de pago:</p>
+    <form action="{{ paypal_url }}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="amount" value="{{ orden.precioTotal }}">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="{{ paypal_email }}">
+      <input type="hidden" name="item_name" value="Pedido {{orden.id}}">
+      <input type="hidden" name="currency_code" value="MXN">
+      <input type="hidden" name="return" value="{{ paypal_return_url }}/purchased/{{orden.id}}">
+      <input type="hidden" name="cancel_return" value="{{ paypal_return_url}}/error/">
+      <p class="center"><input type="image" src="http://www.paypal.com/en_AU/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"></p>
+    </form>
+  </div>
+
 </div>
-<p>
-  <P>Metodo de pago:</p>
-<form action="{{ paypal_url }}" method="POST">
-  {% csrf_token %}
-  <input type="hidden" name="amount" value="{{ orden.precioTotal }}">
-  <input type="hidden" name="cmd" value="_xclick">
-  <input type="hidden" name="business" value="{{ paypal_email }}">
-  <input type="hidden" name="item_name" value="Pedido {{orden.id}}">
-  <input type="hidden" name="currency_code" value="MXN">
-  <input type="hidden" name="return" value="{{ paypal_return_url }}/purchased/{{orden.id}}">
-  <input type="hidden" name="cancel_return" value="{{ paypal_return_url}}/error/">
-  <input type="image" src="http://www.paypal.com/en_AU/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-</form>
-</p>
+
 {% endblock %}
