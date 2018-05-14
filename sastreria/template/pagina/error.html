@@ -2,12 +2,11 @@
 {% block title %} Error pago {% endblock %}
 
 {% block content %}
-
+<div class="container">
 <p>
-	Ha ocurrido un error al procesar tu operacion <b>{{error}}</b>
-<p><a href="/paypaltest/">Clic para regresar al inicio</a></p>
-
+	<H5><center>Ha ocurrido un error al procesar tu operacion!! </center></H5><b>{{error}}</b>
+	<center><i class="large material-icons">sentiment_very_dissatisfied</i></center>
 </p>
 
-
+</div>
 {% endblock %}

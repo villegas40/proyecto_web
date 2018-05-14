@@ -36,7 +36,7 @@ def catalogo(request):
     item_list = [item for item in item_list]
 
     if filtrado=='nuevo':
-        item_list.sort(key=(lambda item: item.fecha_alta))
+        item_list.sort(key=(lambda item: item.fecha_alta), reverse=True)
     elif filtrado=='barato':
         item_list.sort(key=(lambda item: item.precio), reverse=False)
     elif filtrado=='caro':
@@ -125,7 +125,6 @@ def add(request):
     #return HttpResponse("Añadido al carrito.")
     return render(request, 'pagina/agregar-carrito.html', {'product': product})
 
-@login_required
 def info(request):
     product = Product.objects.get(id=request.GET.get('id'))
     return render(request, 'pagina/articulos.html', {'product': product})

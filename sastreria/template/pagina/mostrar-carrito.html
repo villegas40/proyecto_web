@@ -20,7 +20,7 @@
           <td>{{item.product.nombre_producto}}</td>
           <td>{{item.price}}</td>
           <td>{{item.quantity}}</td>
-          <td><input class="waves-effect waves-light btn-small" type="button"
+          <td><input class="red darken-4 btn btn-small" type="button"
           onclick="window.location.href='/carrito/remover/?id={{item.product.id}}'"
           value="Eliminar">
           </input></td>
@@ -39,7 +39,7 @@
 
     {%else%}
       <p class="center">
-        <input class="btn btn-info" type="button"
+        <input class="red darken-4 btn btn-info" type="button"
         onclick="window.location.href='/pago/'"
         value="¡Pagar!">
         </input>

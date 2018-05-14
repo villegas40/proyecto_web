@@ -18,7 +18,7 @@ from django.urls import path, re_path
 from django.contrib.auth import views as auth_views # Para usar login y logout
 from pagina import views
 from pagina.views import modulocitas,citaexito,desplegarcitas,citasdescripcion,sucursalesv,mostrarpedidos,pedidosdescripcion
-from pagos.views import purchased
+from pagos.views import purchased,error
 # Importar las vistas genericas ofrecidas por django para resetear contraseña
 from django.contrib.auth.views import (
     password_reset,
@@ -58,5 +58,6 @@ urlpatterns = [
     re_path(r'^articulo/info/$', views.info, name='articulo_info'),
     path('pago/', views.pagoCompletado, name='pago_view'),
     re_path(r'^purchased/(?P<id>\d+)/$',purchased),
-    path('carrito/eliminar/', views.eliminarCarrito, name='eliminarCarrito_view')
+    path('carrito/eliminar/', views.eliminarCarrito, name='eliminarCarrito_view'),
+    path('error/',error,name='error'),
 ]
