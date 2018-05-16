@@ -3,7 +3,9 @@
 {% block content %}
 <div class="container">
     <h1>Carrito</h1>
-
+    {% if cart.total == 0 %}
+    <h5>Aún no añades trajes a tú carrito. Checa nuestro <a href="/catalogo/">catalogo</a>. </h3>
+    {% endif %}
     <table class="responsive-table centered striped">
       <thead>
         <tr>
@@ -28,9 +30,11 @@
         {% endfor %}
 
         <tr>
+          {% if cart.total != 0 %}
           <td> <p class="right">Total</p></td>
           <td>{{cart.total}}</td>
           <td>{{cart.count}}</td>
+          {% endif %}
         </tr>
 
       </tbody>

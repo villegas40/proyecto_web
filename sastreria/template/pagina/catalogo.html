@@ -3,9 +3,9 @@
 {% block title %} Home {% endblock %}
 {% block content %}
 <div class="container">
-  <h3>Cátalogo</h3>
+  <h3>Catalogo</h3>
   <p>¡Checa nuestros nuestros prouctos!</p>
-  
+
  <div class="row">
 
       <div class="col s4">
@@ -32,31 +32,31 @@
         </div>
       <div class="col s4">
 <ul id = "filtrados">
-  <li {% if filtrado == "muestra" %} >
+  <li {% if filtrado == "mostrar" %} >
         {% else %}><a class="waves-effect waves-light red darken-4 btn" href="{{BASE_URL}}{%if categoria != 'todo'%}?categoria={{categoria}}{%endif%}">
         {% endif %}TODO</a>
       </li>
     </ul>
 
   <ul id = "filtrados">
-      <li {% if filtrado == "NUEVO" %} >
+      <li {% if filtrado == "nuevo" %} >
         {% else %}><a class="waves-effect waves-light red darken-4 btn" href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=nuevo">
-        {% endif %}Lo mas Nuevo</a>
+        {% endif %}NUEVO</a>
       </li>
     </ul>
           </div>
       <div class="col s4">
         <ul id = "filtrados">
-        <li {% if filtrado == "OFERTAS" %} >
+        <li {% if filtrado == "barato" %} >
         {% else %}><a class="waves-effect waves-light red darken-4 btn" href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=barato">
-        {% endif %}OFERTAS</a>
+        {% endif %}ASCENDENTE</a>
       </li>
       </ul>
 
   <ul id = "filtrados">
-      <li {% if filtrado == "TENDENCIA" %} >
+      <li {% if filtrado == "caro" %} >
         {% else %}><a class="waves-effect waves-light red darken-4 btn"  href="{{ BASE_URL }}{% if categoria != 'todo' %}?categoria={{categoria}}&{% else %}?{% endif %}filtrado=caro">
-        {% endif %}TENDENCIA</a>
+        {% endif %}DESCENDENTE</a>
       </li>
       </ul>
       </div>
