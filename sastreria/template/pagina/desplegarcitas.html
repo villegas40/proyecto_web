@@ -3,36 +3,71 @@
 
 {% block content %}
 <div class="container">
-<H4 >Citas realizadas</H4>
-<p>Para mayor informacion hacer clic sobre la fecha deseada</p>
+  {% if user.is_superuser %}
+  <H4 >Citas que han realizado los usuarios</H4>
+  <p>Para mayor informacion hacer clic sobre la fecha deseada</p>
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Usuario</th>
+        <th>Fecha de la cita</th>
+        <th>Hora de la cita</th>
+        <th>Lugar de la cita</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in list %}
+      <tr>
+        <td>
+          {{item.id}}
+        </td>
+        <td>
+          {{item.usuario}}
+        </td>
+        <td>
+          <a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}}</a>
+        </td>
+        <td>
+          {{item.get_CitaHora_display}}
+        </td>
+        <td>
+          {{item.LugarCita}}
+        </td>
 
-<table class="highlight">
-  <thead>
-    <tr>
-      <th>Fecha de la cita</th>
-      <th>Hora de la cita</th>
-      <th>Lugar de la cita</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for item in list %}
-    <tr>
-      <td>
-        <a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}}</a>
-      </td>
-      <td>
-        {{item.get_CitaHora_display}}
-      </td>
-      <td>
-        {{item.LugarCita}}
-      </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <H4 >Citas realizadas</H4>
+  <p>Para mayor informacion hacer clic sobre la fecha deseada</p>
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Fecha de la cita</th>
+        <th>Hora de la cita</th>
+        <th>Lugar de la cita</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in list %}
+      <tr>
+        <td>
+          <a href="/citasdescripcion/{{ item.id }}/">{{ item.CitaFecha}}</a>
+        </td>
+        <td>
+          {{item.get_CitaHora_display}}
+        </td>
+        <td>
+          {{item.LugarCita}}
+        </td>
 
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
 </div>
 
 {% endblock %}

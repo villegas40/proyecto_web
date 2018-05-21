@@ -4,9 +4,68 @@
 {% block content %}
 
   <div class="container">
+    {% if user.is_superuser %}
 
+    <h3>Bienvenido Admin User </h3>
+  <div class="row">
+        <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>Nombre de usuario:</p>
+      </div>
+      <div class="col s3">
+        <p>{{user}}</p>
+      </div>
+    </div>
+         <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>Nombre:</p>
+      </div>
+      <div class="col s3">
+        <p>{{user.first_name}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>Apellidos</p>
+      </div>
+      <div class="col s3">
+        <p>{{user.last_name}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>Editar Perfil:</p>
+      </div>
+      <div class="col s3">
+        <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/edit_profile/'"   value="Editar">
+        </input></p>
+      </div>
+   </div>
+    <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>citas de usuarios: </p>
+      </div>
+      <div class="col s3">
+
+        <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/desplegarcitas/'" value="Citas"></p>
+        <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/desplegarcitas/'" value="Reportes de citas"></p>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s3" style="background-color:lavender;">
+        <p>Pedidos:</p>
+      </div>
+      <div class="col s3">
+        <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/mostrarpedidos/'" value="Pedidos"></p>
+        <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/mostrarpedidos/'" value="Reportes de pedidos"></p>
+
+      </div>
+    </div>
+  </div>
+    {% else %}
     <h3>Perfil de usuario </h3>
- <div class="row">
+  <div class="row">
         <div class="row">
       <div class="col s3" style="background-color:lavender;">
         <p>Nombre de usuario:</p>
@@ -72,8 +131,8 @@
         <p><input class="red darken-4 btn btn-info" type="button" onclick="window.location.href='/mostrarpedidos/'" value="Pedidos"></p>
       </div>
     </div>
-</div>
-    
+  </div>
+    {% endif %}
     {% for item in product %}
       <p>{{ product.nombre_producto }}</p>
     {% endfor %}
