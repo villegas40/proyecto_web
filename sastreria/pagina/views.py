@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from sastreria.settings import BASE_URL
 from django.conf import settings
 from decimal import Decimal
+import datetime
 # Create your views here.
 def home(request):
     return render(request, 'pagina/index2.html')
@@ -53,6 +54,8 @@ def catalogo(request):
     'product':product,
     }
     return render(request, 'pagina/catalogo.html', context)
+
+
 # Creacion de la vista de signup_view
 def signup_user_view(request):
     if request.method == 'POST':
@@ -151,32 +154,12 @@ def pagoCompletado(request,pk=None):
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-    #orders = Orders()
+
     print("HOLAA")
-        #for xd in Product:
-        #product2 = Product.objects.all()
-    #    prdct = Product.objects.filter(id = item.product.id)
-    #    print(prdct)
-        #print(type(product))
-
-    #    if prdct.count() > 0:
-            #print(Product.objects.filter(id = item.product.id).count())
-        #    print(item.product.id)
-
-    #        orders.nombre_producto.add(prdct)
     orders = Orders.objects.create(precioTotal=dec,purchaser=user,tx="1",status="NOPAGADO")
     for item in cart.items:
         orders.nombre_producto.add(Product.objects.get(id=item.product.id))
-        '''
-    orders.precioTotal = dec
-    orders.purchaser = user
-    orders.tx = "test"
-    orders.status = "SINPAGAR"
-    for item in cart.items:
-        print ("HOLA QUE TAL SOY UN PRINT")
-        orders.nombre_producto.add(Product.objects.get(id=item.product.id))
-    #orders.save()
-    '''
+
 
     print(orders.id)
     rorders = get_object_or_404(Orders,pk=orders.id)
@@ -187,22 +170,6 @@ def eliminarCarrito(request):
     cart.clear()
     return HttpResponse("Carrito Vacio")
 
-'''Checar despues
-@login_required
-def removeSingle(request):
-    cart = Cart(request.session)
-    product = Product.objects.get(id=request.GET.get('id'))
-    cart.remove_single(product)
-    return redirect(request, 'pagina/mostrar-carrito.html', {'product':product})
- Usar este metodo para que cuando le de al boton de pagar despliegue el contenido
- del pedido y asi poder proceder a pagar , cuando este pague cambiara el payment_status
- del modelo a pagado y asi poder desplegar todo.
- si no se realiza el pago el payment_status continuara en sin pagar
- Tareas a investigar:
- -Como modifcar un modelo,registro
- -mandar el registro a la siguiente template
- -como guardar un ManyToManyField viniendo del Carrito
-'''
 @login_required
 def modulocitas(request,id):
     form = citas()
@@ -243,7 +210,32 @@ def desplegarcitas(request,pk=None):
     else:
         p = Citas.objects.all().filter(usuario = user).order_by('id').reverse()
         print("xd2")
-    return render(request,'pagina/desplegarcitas.html',{'list': p})
+
+    #Filtrado de fechas
+    if 'filtrado' in request.GET:
+        filtrado = request.GET['filtrado']
+    else:
+        filtrado = 'todo'
+
+    if filtrado == 'todo':
+        item_list = Citas.objects.all()
+    else:
+        item_list = Citas.objects.filter(CitaFecha__range = (datetime.date(2018, int(filtrado), 1), datetime.date(2018, int(filtrado), 28)))
+
+    item_list = [item for item in item_list]
+
+    citas = Citas.objects.all()
+    context = {
+    'BASE_URL': BASE_URL,
+    'filtrado':filtrado,
+    'item_list':item_list,
+    'citas':citas,
+    'list': p
+    }
+
+    return render(request,'pagina/desplegarcitas.html',context)
+
+
 @login_required
 def mostrarpedidos(request,pk=None):
     if pk:
@@ -256,7 +248,41 @@ def mostrarpedidos(request,pk=None):
     else:
         p = Orders.objects.all().filter(purchaser=user,status="PAGADO").order_by('id').reverse()
         print("xd2")
-    return render(request,'pagina/mostrarpedidos.html',{'list':p})
+
+    if 'filtrado' in request.GET:
+        filtrado = request.GET['filtrado']
+    else:
+        filtrado = 'todo'
+
+    # if 'usuario' in request.GET:
+    #     usuario = request.GET['usuario']
+    # else:
+    #     usuario = 'todos'
+
+    if filtrado == 'todo':
+        item_list = Orders.objects.filter(status = 'PAGADO')
+    else:
+        item_list = Orders.objects.filter(Purchase_at__range = (datetime.date(2018,int(filtrado), 1), datetime.date(2018,int(filtrado), 28)), status='PAGADO')
+
+    item_list = [item for item in item_list]
+
+    # if usuario == 'todos':
+    #     item_list = Orders.objects.all().filter(status = 'PAGADO')
+    # else:
+    #    item_list = Orders.objects.filter(purchaser = usuario, status = 'PAGADO')
+
+    orders = Orders.objects.all().filter(status = 'PAGADO')
+
+    context = {
+    'BASE_URL': BASE_URL,
+    'filtrado':filtrado,
+    # 'usuario':usuario,
+    'item_list':item_list,
+    'orders':orders,
+    'list': p
+    }
+
+    return render(request,'pagina/mostrarpedidos.html', context)
 
 
 @login_required

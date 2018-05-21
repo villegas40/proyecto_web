@@ -6,8 +6,44 @@
 <div class="container">
 {% if user.is_superuser %}
 <h3>Pedidos realizados</h3>
-<p>Clic al pedido para mayor informacion</p>
+<h4>Filtrar pedidos:</h4>
+<ul id = "filtrados">
+  <li {% if filtrado == "todo" %} >
+        {% else %}><a class="waves-effect waves-light red darken-4 btn" href="/mostrarpedidos/">
+        {% endif %}MOSTRAR TODO</a>
+  </li>
+</ul>
 
+<ul id = 'filtrados'>
+  <select id = "navegacion">
+    <option value="" disabled selected>Seleccione un mes para filtrar resultados.</option>
+    <option value="/mostrarpedidos/?filtrado=01">Enero</option>
+    <option value="/mostrarpedidos/?filtrado=02">Febrero</option>
+    <option value="/mostrarpedidos/?filtrado=03">Marzo</option>
+    <option value="/mostrarpedidos/?filtrado=04"> Abril</option>
+    <option value="/mostrarpedidos/?filtrado=05">Mayo</option>
+    <option value="/mostrarpedidos/?filtrado=06">Junio</option>
+    <option value="/mostrarpedidos/?filtrado=07">Julio</option>
+    <option value="/mostrarpedidos/?filtrado=08">Agosto</option>
+    <option value="/mostrarpedidos/?filtrado=09">Septiembre</option>
+    <option value="/mostrarpedidos/?filtrado=10">Octubre</option>
+    <option value="/mostrarpedidos/?filtrado=11">Noviembre</option>
+    <option value="/mostrarpedidos/?filtrado=12">Diciembre</option>
+  </select>
+  <label>Filtra por mes</label>
+</ul>
+
+<!-- <ul id = 'usuarios'>
+  <select id = "navegacionUsuario">
+    <option value="" disabled selected>Seleccione un usuario para filtrar resultados.</option>
+    {% for item in orders %}
+    <option value="/mostrarpedidos/{% if filtrado != 'todo' %}?filtrado={{filtrado}}&{% else %}?{% endif %}usuario={{item.purchaser}}">{{item.purchaser}}</option>
+    {% endfor %}
+  </select>
+  <label>Filtra por usuario</label>
+</ul> -->
+
+<p>Clic al pedido para mayor informacion</p>
 <table class="highlight">
   <thead>
     <tr>
@@ -18,7 +54,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for item in list %}
+    {% for item in item_list %}
     <tr>
       <td>
         <a href="/Pedidosdescripcion/{{ item.id }}/">{{ item.id}}</a>
@@ -70,5 +106,17 @@
 <br></br>
 {% endif %}
 </div>
-
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+  $("#navegacion").change(function()
+  {
+    document.location.href = $(this).val();
+  });
+  $("#navegacionUsuario").change(function()
+  {
+    document.location.href = $(this).val();
+  });
+</script>
 {% endblock %}

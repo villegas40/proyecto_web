@@ -5,6 +5,34 @@
 <div class="container">
   {% if user.is_superuser %}
   <H4 >Citas que han realizado los usuarios</H4>
+  <h3>Filtrado</h3>
+  <ul id = "filtrados">
+    <li {% if filtrado == "todo" %} >
+          {% else %}><a class="waves-effect waves-light red darken-4 btn" href="/desplegarcitas/">
+          {% endif %}MOSTRAR TODO</a>
+    </li>
+  </ul>
+
+  <ul id = 'filtrados'>
+    <select id = "navegacion">
+      <option value="" disabled selected>Seleccione un mes para filtrar resultados.</option>
+      <option value="/desplegarcitas/?filtrado=01">Enero</option>
+      <option value="/desplegarcitas/?filtrado=02">Febrero</option>
+      <option value="/desplegarcitas/?filtrado=03">Marzo</option>
+      <option value="/desplegarcitas/?filtrado=04"> Abril</option>
+      <option value="/desplegarcitas/?filtrado=05">Mayo</option>
+      <option value="/desplegarcitas/?filtrado=06">Junio</option>
+      <option value="/desplegarcitas/?filtrado=07">Julio</option>
+      <option value="/desplegarcitas/?filtrado=08">Agosto</option>
+      <option value="/desplegarcitas/?filtrado=09">Septiembre</option>
+      <option value="/desplegarcitas/?filtrado=10">Octubre</option>
+      <option value="/desplegarcitas/?filtrado=11">Noviembre</option>
+      <option value="/desplegarcitas/?filtrado=12">Diciembre</option>
+    </select>
+    <label>Filtra por mes.</label>
+  </ul>
+
+
   <p>Para mayor informacion hacer clic sobre la fecha deseada</p>
   <table class="highlight">
     <thead>
@@ -17,7 +45,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for item in list %}
+      {% for item in item_list %}
       <tr>
         <td>
           {{item.id}}
@@ -69,5 +97,14 @@
   </table>
   {% endif %}
 </div>
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+  $("#navegacion").change(function()
+  {
+    document.location.href = $(this).val();
+  });
+</script>
 
 {% endblock %}
