@@ -2,10 +2,24 @@
 {% block title %} Cita {% endblock %}
 {% block content %}
 <div class="container">
+{% if user.is_superuser %}
+<h4>Descripcion cita </h4>
+<p>Numero de cita:<b> {{resource.id}}</b></p>
+<p>Usuario:<b> {{resource.usuario}}</b></p>
+<p>Nombre del usuario:<b>{{resource.usuario.get_full_name}}</b></p>
+<p>Fecha de la cita: <b>{{resource.CitaFecha}}</b></p>
+<p>En la sucursal: <b>{{resource.LugarCita}}</b></p>
+<p>Hora de la cita: <b>{{resource.get_CitaHora_display}}</b></p>
+
+{% else %}
 <h4>Descripcion cita </h4>
 Fecha de la cita: <b>{{resource.CitaFecha}}</b>
 <p>En la sucursal: <b>{{resource.LugarCita}}</b></p>
 <p>Hora de la cita: <b>{{resource.get_CitaHora_display}}</b></p>
+
+{% endif %}
+
+
 
 </div>
 {% endblock %}
