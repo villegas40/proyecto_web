@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .forms import SignupForm, EditProfileForm,citas # Formulario creado para el perfil
 from django.views.generic import UpdateView, FormView
 from .models import Perfil, Product, Citas, Purchase, Orders
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Permission
 from django.contrib.auth import login, authenticate # singup up
 from django.contrib.auth.forms import PasswordChangeForm # Formulario para cambiar contraseña
 from django.contrib.auth import update_session_auth_hash # Mantener al usuario en sesion despues de cambiar contraseña
@@ -237,18 +237,26 @@ def desplegarcitas(request,pk=None):
         user = User.objects.get(pk=pk)
     else:
         user = request.user
-
-    p = Citas.objects.all().filter(usuario = user)
-
-    return render(request,'pagina/desplegarcitas.html',{'list': Citas.objects.all().filter(usuario=user)})
+    if (user.is_superuser==True):
+        p = Citas.objects.all().order_by('id').reverse()
+        print("xd")
+    else:
+        p = Citas.objects.all().filter(usuario = user).order_by('id').reverse()
+        print("xd2")
+    return render(request,'pagina/desplegarcitas.html',{'list': p})
 @login_required
 def mostrarpedidos(request,pk=None):
     if pk:
         user = User.objects.get(pk=pk)
     else:
         user =request.user
-
-    return render(request,'pagina/mostrarpedidos.html',{'list':Orders.objects.all().filter(purchaser=user,status="PAGADO")})
+    if (user.is_superuser==True):
+        print("xd")
+        p = Orders.objects.all().filter(status="PAGADO").order_by('id').reverse()
+    else:
+        p = Orders.objects.all().filter(purchaser=user,status="PAGADO").order_by('id').reverse()
+        print("xd2")
+    return render(request,'pagina/mostrarpedidos.html',{'list':p})
 
 
 @login_required
